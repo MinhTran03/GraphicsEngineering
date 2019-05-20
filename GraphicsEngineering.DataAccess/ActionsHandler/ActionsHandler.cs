@@ -51,12 +51,12 @@ namespace GraphicsEngineering.DataAccess.ActionsHandler
 			//e.Graphics tự hủy sau khi vẽ => ko cần dispose
 			if (isTranslating)
 			{
-				Shape.Draw(e.Graphics);
+				Shape.Draw(e.Graphics, Dashes.Solid);
 				Shape.TranslatingTransform(TranslatingX, TranslatingY);
 			}
 			if (isRotate)
 			{
-				Shape.Draw(e.Graphics);
+				Shape.Draw(e.Graphics, Dashes.Solid);
 				Shape.RotateTransform(_origin, Angle);
 			}
 			isTranslating = false;

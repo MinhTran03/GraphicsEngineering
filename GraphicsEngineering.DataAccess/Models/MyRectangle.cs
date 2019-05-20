@@ -48,11 +48,11 @@ namespace GraphicsEngineering.DataAccess.Models
 			lines.Add(new Line(worldB, worldC));
 		}
 
-		public override void Draw(Graphics graphics)
+		public override void Draw(Graphics graphics, Dashes dashes)
 		{
 			foreach (var line in lines)
 			{
-				line.Draw(graphics);
+				line.Draw(graphics, Dashes.Solid);
 			}
 		}
 		public override string ToString()

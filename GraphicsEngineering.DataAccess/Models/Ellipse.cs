@@ -26,7 +26,7 @@ namespace GraphicsEngineering.DataAccess.Models
 			PutPixel(color, kernel.X - x, kernel.Y - y);
 		}
 
-		public override void Draw(Graphics graphics)
+		public override void Draw(Graphics graphics, Dashes dashes)
 		{
 			//base.Graphics?.Dispose();
 			base.Graphics = graphics;

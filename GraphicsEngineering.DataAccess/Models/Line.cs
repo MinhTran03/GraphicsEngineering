@@ -34,10 +34,13 @@ namespace GraphicsEngineering.DataAccess.Models
 			Length = (int)Math.Sqrt(x * x + y * y);
 		}
 
-		public override void Draw(Graphics graphics)
+		public override void Draw(Graphics graphics, Dashes dashes)
 		{
 			//base.Graphics?.Dispose();
 			base.Graphics = graphics;
+
+			int dashLength = 2;
+			int count = 0;
 
 			int dx = End.X - Begin.X;
 			int dy = End.Y - Begin.Y;
@@ -47,7 +50,19 @@ namespace GraphicsEngineering.DataAccess.Models
 			int p = 2 * dFollow - dRun;
 			for (int run = 0; run <= dRun; run += 5)
 			{
-				Put8PixelsLine(Color, Begin, run, follow, dx, dy);
+				if (dashes == Dashes.Dash)
+				{
+					if (count % (2 * dashLength) == 0) count = 0;
+					if (count == 0 || count == 1)
+					{
+						Put8PixelsLine(Color, Begin, run, follow, dx, dy);
+					}
+					count++;
+				}
+				else
+				{
+					Put8PixelsLine(Color, Begin, run, follow, dx, dy);
+				}
 
 				if (p < 0)
 					p += 2 * dFollow;

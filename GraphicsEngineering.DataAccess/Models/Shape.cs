@@ -35,12 +35,11 @@ namespace GraphicsEngineering.DataAccess.Models
 
 		public void PutPixel(Color color, int x, int y)
 		{
-			Brush aBrush = new SolidBrush(color);
-			Graphics.FillRectangle(aBrush, x - 1, y - 1, 3, 3);
+			Graphics.FillRectangle(new SolidBrush(color), x - 1, y - 1, 3, 3);
 		}
 		public void Dispose() => Graphics.Dispose();
 
-		public abstract void Draw(Graphics graphics);
+		public abstract void Draw(Graphics graphics, Dashes dashes);
 		public abstract void TranslatingTransform(int trX, int trY);
 		public abstract void ScaleTransform(Point origin, double scaleX, double scaleY);
 		public abstract void RotateTransform(Point origin, int angle);

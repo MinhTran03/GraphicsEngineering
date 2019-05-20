@@ -11,6 +11,7 @@ namespace GraphicsEngineering.Draw3D
 		public int Length { get; set; }
 		public Graphics Graphics { get; set; }
 		private List<Line> lines { get; set; }
+		private List<Line> linesHide { get; set; }
 
 		public Cube(Point3D kernel, int length)
 		{
@@ -18,6 +19,7 @@ namespace GraphicsEngineering.Draw3D
 			Length = length;
 
 			lines = new List<Line>();
+			linesHide = new List<Line>();
 			var points = new Point[8];
 
 			int halfLength = Length / 2;
@@ -40,12 +42,12 @@ namespace GraphicsEngineering.Draw3D
 			lines.Add(new Line(points[2], points[1]));
 			lines.Add(new Line(points[2], points[3]));
 
-			lines.Add(new Line(points[4], points[5]));
-			lines.Add(new Line(points[4], points[7]));
+			linesHide.Add(new Line(points[4], points[5]));
+			linesHide.Add(new Line(points[4], points[7]));
 			lines.Add(new Line(points[6], points[5]));
 			lines.Add(new Line(points[6], points[7]));
 
-			lines.Add(new Line(points[0], points[4]));
+			linesHide.Add(new Line(points[0], points[4]));
 			lines.Add(new Line(points[3], points[7]));
 			lines.Add(new Line(points[1], points[5]));
 			lines.Add(new Line(points[2], points[6]));
@@ -56,14 +58,19 @@ namespace GraphicsEngineering.Draw3D
 			foreach (var line in lines)
 			{
 				line.Color = color;
-				line.Draw(graphics);
+				line.Draw(graphics, Dashes.Solid);
+			}
+			foreach (var line in linesHide)
+			{
+				line.Color = color;
+				line.Draw(graphics, Dashes.Dash);
 			}
 		}
 		public void Draw(Graphics graphics) => Draw(graphics, Color.Black);
 
 		public override string ToString()
 		{
-			return $"Cube: \n" +
+			return $">Cube: \n" +
 				$"\t + Kernel: {Kernel.ToString()} \n" +
 				$"\t + Length: {Length} \n";
 		}

@@ -69,9 +69,9 @@ namespace GraphicsEngineering.GUI
 		{
 			if (isDrawLine2)
 			{
-				line2.Draw(e.Graphics);
+				//line2.Draw(e.Graphics);
 				line2.TranslatingTransform(1, 0);
-				line.Draw(e.Graphics);
+				//line.Draw(e.Graphics);
 				lblInfo1.Text = line.ToString();
 			}
 			isDrawLine2 = false;
