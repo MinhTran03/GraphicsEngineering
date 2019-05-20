@@ -52,7 +52,7 @@ namespace GraphicsEngineering.DataAccess.Models
 		{
 			foreach (var line in lines)
 			{
-				line.Draw(graphics, Dashes.Solid);
+				line.Draw(graphics, dashes);
 			}
 		}
 		public override string ToString()
@@ -79,7 +79,20 @@ namespace GraphicsEngineering.DataAccess.Models
 		{
 			Region.Location = Region.Location.Translating(trX, trY);
 			Kernel = Kernel.Translating(trX, trY);
-			OnChangedRegionValue();
+
+			A = A.Translating(trX, trY);
+			B = B.Translating(trX, trY);
+			C = C.Translating(trX, trY);
+			D = D.Translating(trX, trY);
+			Point worldA = A.ToWorldCoordinates(Constant.WIDTH_DRAWING_AREA, Constant.HEIGHT_DRAWING_AREA);
+			Point worldB = B.ToWorldCoordinates(Constant.WIDTH_DRAWING_AREA, Constant.HEIGHT_DRAWING_AREA);
+			Point worldC = C.ToWorldCoordinates(Constant.WIDTH_DRAWING_AREA, Constant.HEIGHT_DRAWING_AREA);
+			Point worldD = D.ToWorldCoordinates(Constant.WIDTH_DRAWING_AREA, Constant.HEIGHT_DRAWING_AREA);
+			lines.Clear();
+			lines.Add(new Line(worldA, worldB));
+			lines.Add(new Line(worldA, worldD));
+			lines.Add(new Line(worldD, worldC));
+			lines.Add(new Line(worldB, worldC));
 		}
 		public override void ScaleTransform(Point origin, double scaleX, double scaleY)
 		{
@@ -92,6 +105,9 @@ namespace GraphicsEngineering.DataAccess.Models
 		}
 		public override void RotateTransform(Point origin, int angle)
 		{
+			Region.Location = Region.Location.Rotate(origin, angle);
+			Kernel = Kernel.Rotate(origin, angle);
+
 			A = A.Rotate(origin, angle);
 			B = B.Rotate(origin, angle);
 			C = C.Rotate(origin, angle);

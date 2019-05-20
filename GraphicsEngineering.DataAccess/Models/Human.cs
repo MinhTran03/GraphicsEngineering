@@ -58,9 +58,7 @@ namespace GraphicsEngineering.DataAccess.Models
 
         public override void RotateTransform(Point origin, int angle)
         {
-            throw new NotImplementedException();
         }
-
         public override void ScaleTransform(Point origin, double scaleX, double scaleY)
         {
             throw new NotImplementedException();
@@ -68,7 +66,12 @@ namespace GraphicsEngineering.DataAccess.Models
 
         public override void TranslatingTransform(int trX, int trY)
         {
-            throw new NotImplementedException();
+            Head.TranslatingTransform(trX,trY);
+            Body.TranslatingTransform(trX, trY);
+            LeftArm.TranslatingTransform(trX, trY);
+            RightArm.TranslatingTransform(trX, trY);
+            LeftLeg.TranslatingTransform(trX, trY);
+            RightLeg.TranslatingTransform(trX, trY);
         }
     }
 }

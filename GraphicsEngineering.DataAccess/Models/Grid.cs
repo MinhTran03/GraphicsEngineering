@@ -14,7 +14,22 @@ namespace GraphicsEngineering.DataAccess.Models
 		{
 			_area = area;
 			gridBackGround = new Bitmap(area.Width, area.Height);
-			oldBackGround = (Bitmap)area.BackgroundImage;
+			oldBackGround = new Bitmap(area.Width, area.Height);
+
+			using (Graphics g = Graphics.FromImage(oldBackGround))
+			{
+				var blackPen = new Pen(Color.Black);
+				
+				var redPen = new Pen(Color.Red);
+				int temp = area.Width / 2;
+				temp = temp.Round5();
+				g.DrawLine(redPen, new Point(temp, 0), new Point(temp, area.Height));
+				temp = area.Height / 2;
+				temp = temp.Round5();
+				g.DrawLine(redPen, new Point(0, temp), new Point(area.Width, temp));
+
+				_area.BackgroundImage = oldBackGround;
+			}
 		}
 
 		public void Draw()

@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.pnMenuBar = new System.Windows.Forms.Panel();
 			this.lblClose = new System.Windows.Forms.Label();
 			this.lblMinimaze = new System.Windows.Forms.Label();
@@ -38,6 +39,7 @@
 			this.btnStop = new System.Windows.Forms.Button();
 			this.grbScreen = new System.Windows.Forms.GroupBox();
 			this.pbDrawingArea = new System.Windows.Forms.PictureBox();
+			this.timer = new System.Windows.Forms.Timer(this.components);
 			this.pnMenuBar.SuspendLayout();
 			this.grbCoordinates.SuspendLayout();
 			this.grbScreen.SuspendLayout();
@@ -160,6 +162,11 @@
 			this.pbDrawingArea.Paint += new System.Windows.Forms.PaintEventHandler(this.pbDrawingArea_Paint);
 			this.pbDrawingArea.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbDrawingArea_MouseDown);
 			// 
+			// timer
+			// 
+			this.timer.Interval = 500;
+			this.timer.Tick += new System.EventHandler(this.timer_Tick);
+			// 
 			// Form2D
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -194,6 +201,7 @@
 		private System.Windows.Forms.PictureBox pbDrawingArea;
 		private MyCheckBox ckbGridDraw;
 		private System.Windows.Forms.Label lblInfo2;
+		private System.Windows.Forms.Timer timer;
 	}
 }
 
