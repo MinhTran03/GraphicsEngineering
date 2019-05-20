@@ -35,7 +35,7 @@ namespace GraphicsEngineering.DataAccess.Models
 
 		public void PutPixel(Color color, int x, int y)
 		{
-			Graphics.FillRectangle(new SolidBrush(color), x - 1, y - 1, 3, 3);
+			Graphics.FillRectangle(new SolidBrush(color), x - 2, y -2, 5, 5);
 		}
 		public void Dispose() => Graphics.Dispose();
 

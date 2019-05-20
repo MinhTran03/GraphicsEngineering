@@ -75,7 +75,8 @@ namespace GraphicsEngineering.GUI
 		private void SelectCube()
 		{
 			selectionShape = Shape3DType.Cube;
-			btnCube.BackColor = Color.FromArgb(54, 57, 65);
+            OnChangedSelectionShape();
+            btnCube.BackColor = Color.FromArgb(54, 57, 65);
 			btnCube.BackgroundImage = Resources.cubeWhite;
 			ResetPyramid();
 			inputCube.Visible = true;
@@ -83,7 +84,8 @@ namespace GraphicsEngineering.GUI
 		private void SelectPyramid()
 		{
 			selectionShape = Shape3DType.SquarePyramid;
-			btnSquarePyramid.BackColor = Color.FromArgb(54, 57, 65);
+            OnChangedSelectionShape();
+            btnSquarePyramid.BackColor = Color.FromArgb(54, 57, 65);
 			btnSquarePyramid.BackgroundImage = Resources.squarePyramidWhite;
 			ResetCube();
 			inputPyramid.Visible = true;
