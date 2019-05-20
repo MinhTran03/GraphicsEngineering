@@ -15,7 +15,8 @@ namespace GraphicsEngineering.GUI
 		private Grid grid;
 		private Line line;
 		private Line line2;
-		private bool isDrawLine2 = true;
+        private Human human;
+		private bool isDrawLine2 = false;
 
 		public Form2D()
 		{
@@ -31,6 +32,7 @@ namespace GraphicsEngineering.GUI
 
 			line = new Line(new Point(0, 0), new Point(20, 20));
 			line2 = new Line(new Point(0, 20), new Point(20, 20));
+            human = new Human(new Rectangle(20,20, 30,40));
 		}
 
 		private void lblMinimaze_Click(object sender, EventArgs e)
@@ -63,16 +65,15 @@ namespace GraphicsEngineering.GUI
 
 		private void pbDrawingArea_MouseDown(object sender, MouseEventArgs e)
 		{
+            isDrawLine2 = true;
+            pbDrawingArea.Refresh();
 		}
 
 		private void pbDrawingArea_Paint(object sender, PaintEventArgs e)
 		{
 			if (isDrawLine2)
 			{
-				//line2.Draw(e.Graphics);
-				line2.TranslatingTransform(1, 0);
-				//line.Draw(e.Graphics);
-				lblInfo1.Text = line.ToString();
+                human.Draw(e.Graphics, Dashes.Solid);
 			}
 			isDrawLine2 = false;
 		}
