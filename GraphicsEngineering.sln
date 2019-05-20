@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphicsEngineering.GUI", "GraphicsEngineering.GUI\GraphicsEngineering.GUI.csproj", "{25D965F3-57D2-4414-B92F-060C15AD151E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphicsEngineering.DataAccess", "GraphicsEngineering.DataAccess\GraphicsEngineering.DataAccess.csproj", "{D21B1375-10E9-466B-BF17-9DF79A200F21}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6921FE9E-1BE6-4A80-AEC8-5A6D940F256E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphicsEngineering.DataAccessTest", "Tests\GraphicsEngineering.DataAccessTest\GraphicsEngineering.DataAccessTest.csproj", "{60D5F525-6298-412C-B0C9-1DE84697B5B5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{FC6E94D7-52A5-42A7-AE14-5CED943F0F12}"
+	ProjectSection(SolutionItems) = preProject
+		TeamInfo.xml = TeamInfo.xml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphicsEngineering.Draw3D", "GraphicsEngineering.Draw3D\GraphicsEngineering.Draw3D.csproj", "{97AE62CA-47D7-4A4F-A8F6-074CDFB493ED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{25D965F3-57D2-4414-B92F-060C15AD151E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25D965F3-57D2-4414-B92F-060C15AD151E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25D965F3-57D2-4414-B92F-060C15AD151E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25D965F3-57D2-4414-B92F-060C15AD151E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D21B1375-10E9-466B-BF17-9DF79A200F21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D21B1375-10E9-466B-BF17-9DF79A200F21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D21B1375-10E9-466B-BF17-9DF79A200F21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D21B1375-10E9-466B-BF17-9DF79A200F21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60D5F525-6298-412C-B0C9-1DE84697B5B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60D5F525-6298-412C-B0C9-1DE84697B5B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60D5F525-6298-412C-B0C9-1DE84697B5B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60D5F525-6298-412C-B0C9-1DE84697B5B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97AE62CA-47D7-4A4F-A8F6-074CDFB493ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97AE62CA-47D7-4A4F-A8F6-074CDFB493ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97AE62CA-47D7-4A4F-A8F6-074CDFB493ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97AE62CA-47D7-4A4F-A8F6-074CDFB493ED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{60D5F525-6298-412C-B0C9-1DE84697B5B5} = {6921FE9E-1BE6-4A80-AEC8-5A6D940F256E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3536882E-92CB-4C3F-B5E6-F9036281F4C2}
+	EndGlobalSection
+EndGlobal
