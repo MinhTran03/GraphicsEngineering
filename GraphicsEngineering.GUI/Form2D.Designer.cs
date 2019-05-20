@@ -34,12 +34,12 @@
 			this.lblMinimaze = new System.Windows.Forms.Label();
 			this.lblInfo1 = new System.Windows.Forms.Label();
 			this.grbCoordinates = new System.Windows.Forms.GroupBox();
-			this.ckbGridDraw = new GraphicsEngineering.GUI.MyCheckBox();
 			this.lblInfo2 = new System.Windows.Forms.Label();
 			this.btnStop = new System.Windows.Forms.Button();
 			this.grbScreen = new System.Windows.Forms.GroupBox();
 			this.pbDrawingArea = new System.Windows.Forms.PictureBox();
 			this.timer = new System.Windows.Forms.Timer(this.components);
+			this.ckbGridDraw = new GraphicsEngineering.GUI.MyCheckBox();
 			this.pnMenuBar.SuspendLayout();
 			this.grbCoordinates.SuspendLayout();
 			this.grbScreen.SuspendLayout();
@@ -107,18 +107,6 @@
 			this.grbCoordinates.TabStop = false;
 			this.grbCoordinates.Text = "Coordinates";
 			// 
-			// ckbGridDraw
-			// 
-			this.ckbGridDraw.BackColor = System.Drawing.Color.DarkCyan;
-			this.ckbGridDraw.Location = new System.Drawing.Point(6, 436);
-			this.ckbGridDraw.Name = "ckbGridDraw";
-			this.ckbGridDraw.Padding = new System.Windows.Forms.Padding(3);
-			this.ckbGridDraw.Size = new System.Drawing.Size(58, 28);
-			this.ckbGridDraw.TabIndex = 3;
-			this.ckbGridDraw.Text = "myCheckBox1";
-			this.ckbGridDraw.UseVisualStyleBackColor = false;
-			this.ckbGridDraw.CheckedChanged += new System.EventHandler(this.ckbGridDraw_CheckedChanged);
-			// 
 			// lblInfo2
 			// 
 			this.lblInfo2.BackColor = System.Drawing.Color.DarkCyan;
@@ -164,8 +152,20 @@
 			// 
 			// timer
 			// 
-			this.timer.Interval = 500;
+			this.timer.Interval = 50;
 			this.timer.Tick += new System.EventHandler(this.timer_Tick);
+			// 
+			// ckbGridDraw
+			// 
+			this.ckbGridDraw.BackColor = System.Drawing.Color.DarkCyan;
+			this.ckbGridDraw.Location = new System.Drawing.Point(6, 436);
+			this.ckbGridDraw.Name = "ckbGridDraw";
+			this.ckbGridDraw.Padding = new System.Windows.Forms.Padding(3);
+			this.ckbGridDraw.Size = new System.Drawing.Size(58, 28);
+			this.ckbGridDraw.TabIndex = 3;
+			this.ckbGridDraw.Text = "myCheckBox1";
+			this.ckbGridDraw.UseVisualStyleBackColor = false;
+			this.ckbGridDraw.CheckedChanged += new System.EventHandler(this.ckbGridDraw_CheckedChanged);
 			// 
 			// Form2D
 			// 

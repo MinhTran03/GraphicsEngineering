@@ -23,8 +23,8 @@ namespace GraphicsEngineering.GUI
 		private void Form3D_Load(object sender, EventArgs e)
 		{
 			btnWhite.Focus();
-			Constant.WIDTH_DRAWING_AREA = pbDrawingArea.Width;
-			Constant.HEIGHT_DRAWING_AREA = pbDrawingArea.Height;
+			Cons.WIDTH = pbDrawingArea.Width;
+			Cons.HEIGHT = pbDrawingArea.Height;
 
 			grid3D = new Grid3D(pbDrawingArea);
 			grid3D.Draw(Color.Black);

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using GraphicsEngineering.DataAccess.Common;
 
 namespace GraphicsEngineering.DataAccess.Models
@@ -18,6 +14,8 @@ namespace GraphicsEngineering.DataAccess.Models
 			: base(rect, color)
 		{
 			Rectangle bodyRect = rect;
+			Kernel = new Point(rect.X + rect.Width / 2, rect.Y - rect.Height / 2)
+									.ToComputerCoordinates(Cons.WIDTH, Cons.HEIGHT);
 			var beginHelve = new Point(rect.X + rect.Width / 2, rect.Y - rect.Height / 3);
 			var endHelve = new Point(rect.X + rect.Width / 2, rect.Y - rect.Height);
 			bodyRect.Height /= 3;
@@ -39,6 +37,7 @@ namespace GraphicsEngineering.DataAccess.Models
 		{
 			Body.RotateTransform(origin, angle);
 			Helve.RotateTransform(origin, angle);
+			Kernel = Kernel.Rotate(origin, angle);
 		}
 		public override void ScaleTransform(Point origin, double scaleX, double scaleY)
 		{
@@ -48,6 +47,7 @@ namespace GraphicsEngineering.DataAccess.Models
 		{
 			Body.TranslatingTransform(trX, trY);
 			Helve.TranslatingTransform(trX, trY);
+			Kernel = Kernel.Translating(trX, trY);
 		}
 	}
 }

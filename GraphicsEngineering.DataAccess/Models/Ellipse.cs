@@ -76,7 +76,7 @@ namespace GraphicsEngineering.DataAccess.Models
 		}
 		public override string ToString()
 		{
-			Point worldKernel = Kernel.ToWorldCoordinates(Constant.WIDTH_DRAWING_AREA, Constant.HEIGHT_DRAWING_AREA);
+			Point worldKernel = Kernel.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
 			return $"Ellipse: \n" +
 				$"\t + Kernel: {worldKernel.ToString()} \n" +
 				$"\t + Radius A: {(RadiusA / 5).ToString()} \n" +

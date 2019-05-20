@@ -13,9 +13,9 @@
 		Dash
 	}
 
-	public class Constant
+	public class Cons
 	{
-		public static int WIDTH_DRAWING_AREA = 0;
-		public static int HEIGHT_DRAWING_AREA = 0;
+		public static int WIDTH = 0;
+		public static int HEIGHT = 0;
 	}
 }

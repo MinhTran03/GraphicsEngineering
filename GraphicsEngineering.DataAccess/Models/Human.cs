@@ -17,28 +17,33 @@ namespace GraphicsEngineering.DataAccess.Models
         public Line RightLeg { get; set; }
         public Line LeftLeg { get; set; }
 
+		/// <summary>
+		/// Only work on 3x4 screen
+		/// </summary>
+		/// <param name="rect"></param>
         public Human(Rectangle rect) : this(rect, Color.Black) { }
         public Human(Rectangle rect, Color color)
             : base(rect, color)
         {
-            Rectangle rectangle = Region.ToWorldRectangle(Constant.WIDTH_DRAWING_AREA, Constant.HEIGHT_DRAWING_AREA);
-            Rectangle head = new Rectangle(rectangle.Location.X + rectangle.Width / 3, rectangle.Location.Y,
-                rectangle.Width / 3, rectangle.Height / 4);
-            Head = new Circle(head);
-            Body = new Line(new Point(rectangle.Location.X + rectangle.Width / 2, rectangle.Location.Y - head.Height),
-                new Point(rectangle.Location.X + rectangle.Width / 2, rectangle.Location.Y - (int)(head.Height * 2.5f)));
+			int x = rect.X;
+			int y = rect.Y;
+			int width = rect.Width;
+			int height = rect.Height;
+			int headSize = (int)Math.Round((height / 4) * 1.25);
+			int centerWidth = width / 2;
 
-            RightArm = new Line(new Point(rectangle.Location.X + rectangle.Width / 2, rectangle.Location.Y - (int)(head.Height * 1.5f)),
-                new Point(rectangle.Location.X + rectangle.Width / 4, rectangle.Location.Y - (int)(head.Height * 1.9f)));
-
-            LeftArm = new Line(new Point(rectangle.Location.X + rectangle.Width / 2, rectangle.Location.Y - (int)(head.Height * 1.5f)),
-                new Point(rectangle.Location.X + rectangle.Width * 3 / 4, rectangle.Location.Y - (int)(head.Height * 1.9f)));
-
-            RightLeg = new Line(new Point(rectangle.Location.X + rectangle.Width / 2, rectangle.Location.Y - (int)(head.Height * 2.5f)),
-                new Point(rectangle.Location.X + rectangle.Width / 3, rectangle.Location.Y - (int)(head.Height * 3)));
-
-            LeftLeg = new Line(new Point(rectangle.Location.X + rectangle.Width / 2, rectangle.Location.Y - (int)(head.Height * 2.5f)),
-                new Point(rectangle.Location.X + rectangle.Width * 2 / 3, rectangle.Location.Y - (int)(head.Height * 3)));
+            Rectangle rectHead = new Rectangle(x + (width - headSize) / 2, y, headSize, headSize);
+            Head = new Circle(rectHead);
+            Body =		new Line(new Point(x + centerWidth, y - rectHead.Height),
+									new Point(x + centerWidth, y - (int)(height * 0.7f)));
+            RightArm =	new Line(new Point(x + centerWidth, y - (int)(height * 0.43f)),
+									new Point(x + (width - headSize) / 2, y - (int)(height * 0.7f)));
+            LeftArm =	new Line(new Point(x + centerWidth, y - (int)(height * 0.43f)),
+									new Point(x + (width - headSize) / 2 + headSize, y - (int)(height * 0.7f)));
+            RightLeg =	new Line(new Point(x + centerWidth, y - (int)(height * 0.7f)),
+									new Point(x + (width - headSize) / 2, y - height));
+            LeftLeg =	new Line(new Point(x + centerWidth, y - (int)(height * 0.7f)),
+									new Point(x + (width - headSize) / 2 + headSize, y - height));
         }
 
         public override void Draw(Graphics graphics, Dashes dashes)
@@ -55,15 +60,14 @@ namespace GraphicsEngineering.DataAccess.Models
         {
             throw new NotImplementedException();
         }
-
         public override void RotateTransform(Point origin, int angle)
         {
-        }
+			throw new NotImplementedException();
+		}
         public override void ScaleTransform(Point origin, double scaleX, double scaleY)
         {
             throw new NotImplementedException();
         }
-
         public override void TranslatingTransform(int trX, int trY)
         {
             Head.TranslatingTransform(trX,trY);
@@ -73,5 +77,11 @@ namespace GraphicsEngineering.DataAccess.Models
             LeftLeg.TranslatingTransform(trX, trY);
             RightLeg.TranslatingTransform(trX, trY);
         }
+
+		public void RotateRightArm(int angle)
+		{
+			Point origin = RightArm.Begin;
+			RightArm.End = RightArm.End.Rotate(origin, angle);
+		}
     }
 }

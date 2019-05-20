@@ -37,10 +37,10 @@ namespace GraphicsEngineering.DataAccess.Models
 			D = new Point(Region.X, Region.Y + Region.Height);
 			// Khi new 1 line thì Begin và End truyền vô sẽ được chuyển sang tọa độ máy
 			// mà ABCD đã là tọa độ máy => cần chuyển về tọa độ ng dùng
-			Point worldA = A.ToWorldCoordinates(Constant.WIDTH_DRAWING_AREA, Constant.HEIGHT_DRAWING_AREA);
-			Point worldB = B.ToWorldCoordinates(Constant.WIDTH_DRAWING_AREA, Constant.HEIGHT_DRAWING_AREA);
-			Point worldC = C.ToWorldCoordinates(Constant.WIDTH_DRAWING_AREA, Constant.HEIGHT_DRAWING_AREA);
-			Point worldD = D.ToWorldCoordinates(Constant.WIDTH_DRAWING_AREA, Constant.HEIGHT_DRAWING_AREA);
+			Point worldA = A.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
+			Point worldB = B.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
+			Point worldC = C.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
+			Point worldD = D.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
 			lines.Clear();
 			lines.Add(new Line(worldA, worldB));
 			lines.Add(new Line(worldA, worldD));
@@ -59,11 +59,11 @@ namespace GraphicsEngineering.DataAccess.Models
 		{
 			double worldWidth = Width / 5;
 			double worldHeight = Height / 5;
-			Point worldKernel = Kernel.ToWorldCoordinates(Constant.WIDTH_DRAWING_AREA, Constant.HEIGHT_DRAWING_AREA);
-			Point worldA = A.ToWorldCoordinates(Constant.WIDTH_DRAWING_AREA, Constant.HEIGHT_DRAWING_AREA);
-			Point worldB = B.ToWorldCoordinates(Constant.WIDTH_DRAWING_AREA, Constant.HEIGHT_DRAWING_AREA);
-			Point worldC = C.ToWorldCoordinates(Constant.WIDTH_DRAWING_AREA, Constant.HEIGHT_DRAWING_AREA);
-			Point worldD = D.ToWorldCoordinates(Constant.WIDTH_DRAWING_AREA, Constant.HEIGHT_DRAWING_AREA);
+			Point worldKernel = Kernel.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
+			Point worldA = A.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
+			Point worldB = B.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
+			Point worldC = C.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
+			Point worldD = D.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
 
 			return $"Rectangle:\n" +
 					$"A: {worldA.ToString()} \n" +
@@ -84,10 +84,10 @@ namespace GraphicsEngineering.DataAccess.Models
 			B = B.Translating(trX, trY);
 			C = C.Translating(trX, trY);
 			D = D.Translating(trX, trY);
-			Point worldA = A.ToWorldCoordinates(Constant.WIDTH_DRAWING_AREA, Constant.HEIGHT_DRAWING_AREA);
-			Point worldB = B.ToWorldCoordinates(Constant.WIDTH_DRAWING_AREA, Constant.HEIGHT_DRAWING_AREA);
-			Point worldC = C.ToWorldCoordinates(Constant.WIDTH_DRAWING_AREA, Constant.HEIGHT_DRAWING_AREA);
-			Point worldD = D.ToWorldCoordinates(Constant.WIDTH_DRAWING_AREA, Constant.HEIGHT_DRAWING_AREA);
+			Point worldA = A.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
+			Point worldB = B.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
+			Point worldC = C.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
+			Point worldD = D.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
 			lines.Clear();
 			lines.Add(new Line(worldA, worldB));
 			lines.Add(new Line(worldA, worldD));
@@ -112,10 +112,10 @@ namespace GraphicsEngineering.DataAccess.Models
 			B = B.Rotate(origin, angle);
 			C = C.Rotate(origin, angle);
 			D = D.Rotate(origin, angle);
-			Point worldA = A.ToWorldCoordinates(Constant.WIDTH_DRAWING_AREA, Constant.HEIGHT_DRAWING_AREA);
-			Point worldB = B.ToWorldCoordinates(Constant.WIDTH_DRAWING_AREA, Constant.HEIGHT_DRAWING_AREA);
-			Point worldC = C.ToWorldCoordinates(Constant.WIDTH_DRAWING_AREA, Constant.HEIGHT_DRAWING_AREA);
-			Point worldD = D.ToWorldCoordinates(Constant.WIDTH_DRAWING_AREA, Constant.HEIGHT_DRAWING_AREA);
+			Point worldA = A.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
+			Point worldB = B.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
+			Point worldC = C.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
+			Point worldD = D.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
 			lines.Clear();
 			lines.Add(new Line(worldA, worldB));
 			lines.Add(new Line(worldA, worldD));

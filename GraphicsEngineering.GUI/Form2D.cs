@@ -11,15 +11,17 @@ namespace GraphicsEngineering.GUI
 {
 	public partial class Form2D : Form
 	{
-		private List<Shape> shapes = new List<Shape>();
 		private Grid grid;
-		private Line line;
-		private Line line2;
 		private Mjolnir mjolnir;
+		private Human human;
 		private int count = 0;
-		private bool action1 = false;
-		private bool action2 = false;
-		private bool action3 = false;
+		private bool isDraw = false;
+		private bool actionHand90 = false;
+		private bool actionMjolnirUp = false;
+		private bool actionMjolnirRotate = false;
+		private bool actionMjolnir2Cap = false;
+		private bool actionHandUp = false;
+		private bool actionMjolnirStraight = false;
 
 		public Form2D()
 		{
@@ -28,14 +30,20 @@ namespace GraphicsEngineering.GUI
 
 		private void Form2D_Load(object sender, EventArgs e)
 		{
-			Constant.WIDTH_DRAWING_AREA = pbDrawingArea.Width;
-			Constant.HEIGHT_DRAWING_AREA = pbDrawingArea.Height;
+			Cons.WIDTH = pbDrawingArea.Width;
+			Cons.HEIGHT = pbDrawingArea.Height;
 			grid = new Grid(pbDrawingArea);
-			Rectangle rect = new Rectangle(-5, 15, 10, 15);
 
-			line = new Line(new Point(0, 0), new Point(20, 20));
-			line2 = new Line(new Point(0, 20), new Point(20, 20));
-			mjolnir = new Mjolnir(rect);
+			//MessageBox.Show(pbDrawingArea.Size.ToString());
+			var mjolnirRect = new Rectangle(-100, 18, 10, 18);
+			mjolnir = new Mjolnir(mjolnirRect);
+			mjolnir.RotateTransform(mjolnir.Kernel, 180);
+
+			var humanRect = new Rectangle(60, 40, 30, 40);
+			human = new Human(humanRect);
+
+			isDraw = true;
+			pbDrawingArea.Refresh();
 		}
 
 		private void lblMinimaze_Click(object sender, EventArgs e)
@@ -48,7 +56,7 @@ namespace GraphicsEngineering.GUI
 		}
 		private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			shapes.ForEach(shape => shape?.Dispose()); // Dispose if shape not null
+			//shapes.ForEach(shape => shape?.Dispose()); // Dispose if shape not null
 		}
 		private void ckbGridDraw_CheckedChanged(object sender, EventArgs e)
 		{
@@ -63,8 +71,8 @@ namespace GraphicsEngineering.GUI
 		}
 		private void btnStop_Click(object sender, EventArgs e)
 		{
-			//shapes.ForEach(shape => shape?.Dispose());
 			timer.Stop();
+			//MessageBox.Show(count.ToString());
 		}
 
 		private void pbDrawingArea_MouseDown(object sender, MouseEventArgs e)
@@ -75,46 +83,79 @@ namespace GraphicsEngineering.GUI
 
 		private void pbDrawingArea_Paint(object sender, PaintEventArgs e)
 		{
-			if (action1)
+			if (actionHand90)
 			{
-				mjolnir.Draw(e.Graphics, Dashes.Solid);
-				mjolnir.RotateTransform(new Point(0, 0), 45);
-				count++;
+				human.RotateRightArm(5);
 			}
-			else if(action2)
+			else if(actionMjolnirUp)
 			{
-				mjolnir.Draw(e.Graphics, Dashes.Solid);
+				mjolnir.TranslatingTransform(0, 1);
+			}
+			else if(actionMjolnirRotate)
+			{
+				mjolnir.RotateTransform(mjolnir.Kernel, 45);
+			}
+			else if(actionMjolnir2Cap)
+			{
 				mjolnir.TranslatingTransform(1, 0);
-				count++;
 			}
-			else if(action3)
+			else if(actionHandUp)
+			{
+				human.RotateRightArm(5);
+				mjolnir.TranslatingTransform(0, 1);
+			}
+			else if(actionMjolnirStraight)
+			{
+				human.RotateRightArm(5);
+				mjolnir.RotateTransform(human.RightArm.End, 45);
+			}
+
+			if(isDraw)
 			{
 				mjolnir.Draw(e.Graphics, Dashes.Solid);
-				mjolnir.RotateTransform(new Point(18, 0), -45);
+				human.Draw(e.Graphics, Dashes.Solid);
 				count++;
 			}
-			action1 = false;
-			action2 = false;
-			action3 = false;
+			actionHand90 = false;
+			actionMjolnirUp = false;
+			actionMjolnirRotate = false;
+			actionMjolnir2Cap = false;
+			actionHandUp = false;
+			actionMjolnirStraight = false;
 		}
 
 		private void timer_Tick(object sender, EventArgs e)
 		{
-			if(count <= 1)
+			if(count < 10)
 			{
-				action1 = true;
-				pbDrawingArea.Refresh();
+				actionHand90 = true;
 			}
-			else if(count <= 20)
+			else if(count < 29)
+			{
+				actionMjolnirUp = true;
+			}
+			else if(count < 32)
+			{
+				actionMjolnirRotate = true;
+			}
+			else if(count < 186)
+			{
+				timer.Interval = 10;
+				actionMjolnir2Cap = true;
+			}
+			else if(count < 190)
 			{
 				timer.Interval = 200;
-				action2 = true;
-				pbDrawingArea.Refresh();
+				actionHandUp = true;
 			}
-			else if (count <= 23)
+			else if(count < 191)
 			{
-				timer.Interval = 500;
-				action3 = true;
+				timer.Interval = 1;
+				actionMjolnirStraight = true;
+			}
+
+			if(isDraw)
+			{
 				pbDrawingArea.Refresh();
 			}
 		}

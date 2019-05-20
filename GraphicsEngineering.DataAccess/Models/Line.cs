@@ -75,8 +75,8 @@ namespace GraphicsEngineering.DataAccess.Models
 		}
 		public override string ToString()
 		{
-			Point worldBegin = Begin.ToWorldCoordinates(Constant.WIDTH_DRAWING_AREA, Constant.HEIGHT_DRAWING_AREA);
-			Point worldEnd= End.ToWorldCoordinates(Constant.WIDTH_DRAWING_AREA, Constant.HEIGHT_DRAWING_AREA);
+			Point worldBegin = Begin.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
+			Point worldEnd= End.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
 			return $"Line: \n" +
 				$"\t + Begin: {worldBegin.ToString()} \n" +
 				$"\t + End: {worldEnd.ToString()} \n" +

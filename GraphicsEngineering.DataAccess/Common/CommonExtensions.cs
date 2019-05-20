@@ -30,7 +30,7 @@ namespace GraphicsEngineering.DataAccess.Common
 			{
 				for (int j = 0; j < matrix.GetLength(1); j++)
 				{
-					matrix[i, j] = Convert.ToInt32(matrix[i, j]).Round5();
+					matrix[i, j] = Convert.ToInt32(Math.Round(matrix[i, j])).Round5();
 				}
 			}
 			return matrix;

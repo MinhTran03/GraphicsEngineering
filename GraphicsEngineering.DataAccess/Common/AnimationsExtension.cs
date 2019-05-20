@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace GraphicsEngineering.DataAccess.Common
 {
@@ -108,6 +107,7 @@ namespace GraphicsEngineering.DataAccess.Common
 		/// <returns>Tọa độ điểm sau khi biến đổi</returns>
 		public static Point Translating(this Point point, int trX, int trY)
 		{
+			trY = -trY;
 			var trans = new MatrixTransform();
 			// Truyền vào trX và trY để get ma trận Move
 			trans.GenerateTranslatingMatrix(trX * 5, trY * 5);
@@ -126,8 +126,6 @@ namespace GraphicsEngineering.DataAccess.Common
 		/// <returns>Tọa độ điểm sau khi Rotate quanh 1 điểm bất kỳ</returns>
 		public static Point Rotate(this Point point, Point origin, int angle)
 		{
-			origin = origin.ToComputerCoordinates(Constant.WIDTH_DRAWING_AREA, Constant.HEIGHT_DRAWING_AREA);
-
 			var trans = new MatrixTransform();
 			// Tạo ma trận move về gốc tọa độ
 			trans.GenerateTranslatingMatrix(-origin.X, -origin.Y);
@@ -135,8 +133,8 @@ namespace GraphicsEngineering.DataAccess.Common
 			trans.GenerateRotateMatrix(angle);
 			double[,] matrixOfPoint = point.ToMatrix();
 			// Tịnh tiến về Origin(0, 0) và thực hiện Rotate
-			double[,] resultMatrix = matrixOfPoint.MultiplicationWithMatrix(trans.TranslatingMatrix)
-												  .MultiplicationWithMatrix(trans.RotateMatrix);
+			double[,] resultMatrix = matrixOfPoint.MultiplicationWithMatrix(trans.TranslatingMatrix);
+			resultMatrix = resultMatrix.MultiplicationWithMatrix(trans.RotateMatrix);
 			// Tạo ma trận move về tọa độ ban đầu
 			trans.GenerateTranslatingMatrix(origin.X, origin.Y);
 			// Thực hiện biến đổi
@@ -153,8 +151,6 @@ namespace GraphicsEngineering.DataAccess.Common
 		/// <returns>Tọa độ điểm sau khi đối xứng</returns>
 		public static Point Opposite(this Point point, Point origin, OppositeType oppositeType)
 		{
-			origin = origin.ToComputerCoordinates(Constant.WIDTH_DRAWING_AREA, Constant.HEIGHT_DRAWING_AREA);
-
 			var trans = new MatrixTransform();
 			// Tạo ma trận move về gốc tọa độ
 			trans.GenerateTranslatingMatrix(-origin.X, -origin.Y);
@@ -192,8 +188,6 @@ namespace GraphicsEngineering.DataAccess.Common
 		/// <returns>Tọa độ điểm sau khi scale</returns>
 		public static Point Scale(this Point point, Point origin, double scaleX, double scaleY)
 		{
-			origin = origin.ToComputerCoordinates(Constant.WIDTH_DRAWING_AREA, Constant.HEIGHT_DRAWING_AREA);
-
 			var trans = new MatrixTransform();
 			// Tạo ma trận move về gốc tọa độ
 			trans.GenerateTranslatingMatrix(-origin.X, -origin.Y);
