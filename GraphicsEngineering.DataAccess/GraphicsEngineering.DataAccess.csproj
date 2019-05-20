@@ -56,6 +56,7 @@
     <Compile Include="Models\Circle.cs" />
     <Compile Include="Models\Ellipse.cs" />
     <Compile Include="Models\Grid.cs" />
+    <Compile Include="Models\Human.cs" />
     <Compile Include="Models\Line.cs" />
     <Compile Include="Models\Mjolnir.cs" />
     <Compile Include="Models\MyRectangle.cs" />

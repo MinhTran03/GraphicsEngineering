@@ -13,7 +13,7 @@ namespace GraphicsEngineering.GUI
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new FormSelectMode());
+			Application.Run(new Form2D());
 		}
 	}
 }
