@@ -65,8 +65,7 @@ namespace GraphicsEngineering.GUI
 
 		private void pbDrawingArea_MouseDown(object sender, MouseEventArgs e)
 		{
-            isDrawLine2 = true;
-            pbDrawingArea.Refresh();
+            timer1.Start();
 		}
 
 		private void pbDrawingArea_Paint(object sender, PaintEventArgs e)
@@ -74,8 +73,16 @@ namespace GraphicsEngineering.GUI
 			if (isDrawLine2)
 			{
                 human.Draw(e.Graphics, Dashes.Solid);
+                human.TranslatingTransform(-1, 0);
+                human.RotateTransform(new Point(800, 500), 90);
 			}
 			isDrawLine2 = false;
 		}
-	}
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            isDrawLine2 = true;
+            pbDrawingArea.Refresh();
+        }
+    }
 }
