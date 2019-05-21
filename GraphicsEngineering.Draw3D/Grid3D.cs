@@ -39,7 +39,7 @@ namespace GraphicsEngineering.Draw3D
 		}
 		public void Clear()
 		{
-			_area.BackgroundImage = oldBackGround;
+			_area.Image = oldBackGround;
 		}
 	}
 }
