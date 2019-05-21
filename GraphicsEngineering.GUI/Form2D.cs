@@ -51,11 +51,11 @@ namespace GraphicsEngineering.GUI
 			actionLightnings = new List<bool>();
 
 			var mjolnirRect = new Rectangle(-100, 18, 10, 18);
-			mjolnir = new Mjolnir(mjolnirRect, Color.FromArgb(136, 136, 134));
+			mjolnir = new Mjolnir(mjolnirRect, Color.White);
 			mjolnir.RotateTransform(mjolnir.Kernel, 180);
 
 			var humanRect = new Rectangle(60, 40, 30, 40);
-			human = new Human(humanRect, Color.White);
+			human = new Human(humanRect, Color.Red);
 
 			lightnings.Add(new Lightning(new Point(70, 72), new Point(65, 44), Color.FromArgb(169, 41, 238)));
 			actionLightnings.Add(false);
@@ -182,7 +182,7 @@ namespace GraphicsEngineering.GUI
 			}
 			else if(count < 187)
 			{
-				timer.Interval = 10;
+				timer.Interval = 5;
 				actionMjolnir2Cap = true;
 			}
 			else if(count < 191)
