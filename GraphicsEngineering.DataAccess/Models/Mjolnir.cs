@@ -20,13 +20,20 @@ namespace GraphicsEngineering.DataAccess.Models
 			var endHelve = new Point(rect.X + rect.Width / 2, rect.Y - rect.Height);
 			bodyRect.Height /= 3;
 			Body = new MyRectangle(bodyRect, color);
-			Helve = new Line(beginHelve, endHelve);
+			Helve = new Line(beginHelve, endHelve, color);
 		}
 
 		public override void Draw(Graphics graphics, Dashes dashes)
 		{
 			Body.Draw(graphics, dashes);
 			Helve.Draw(graphics, dashes);
+		}
+		public override string ToString()
+		{
+			return 
+				$"> Mjolnir: \n" +
+				$"   - {Body.ToString()}" +
+				$"   - {Helve.ToString()}";
 		}
 
 		public override void OppositeTransform(Point origin, OppositeType oppositeType)

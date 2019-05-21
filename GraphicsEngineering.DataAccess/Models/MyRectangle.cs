@@ -42,10 +42,10 @@ namespace GraphicsEngineering.DataAccess.Models
 			Point worldC = C.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
 			Point worldD = D.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
 			lines.Clear();
-			lines.Add(new Line(worldA, worldB));
-			lines.Add(new Line(worldA, worldD));
-			lines.Add(new Line(worldD, worldC));
-			lines.Add(new Line(worldB, worldC));
+			lines.Add(new Line(worldA, worldB, Color));
+			lines.Add(new Line(worldA, worldD, Color));
+			lines.Add(new Line(worldD, worldC, Color));
+			lines.Add(new Line(worldB, worldC, Color));
 		}
 
 		public override void Draw(Graphics graphics, Dashes dashes)
@@ -66,14 +66,37 @@ namespace GraphicsEngineering.DataAccess.Models
 			Point worldD = D.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
 
 			return $"Rectangle:\n" +
-					$"A: {worldA.ToString()} \n" +
-					$"B: {worldB.ToString()} \n" +
-					$"C: {worldC.ToString()} \n" +
-					$"D: {worldD.ToString()} \n" +
-					$"Width: {worldWidth.ToString()} \n" +
-					$"Height: {worldHeight.ToString()} \n" +
-					$"Kernel: {worldKernel.ToString()} \n";
+					$"      + A: {worldA.ToString()} \n" +
+					$"      + B: {worldB.ToString()} \n" +
+					$"      + C: {worldC.ToString()} \n" +
+					$"      + D: {worldD.ToString()} \n" +
+					$"      + Width: {worldWidth.ToString()} \n" +
+					$"      + Height: {worldHeight.ToString()} \n" +
+					$"      + Kernel: {worldKernel.ToString()} \n";
 		}
+
+		/// <summary>
+		/// Work on world coordinate
+		/// </summary>
+		/// <param name="point1">world Origin Point</param>
+		/// <param name="point2">world Fixed Point</param>
+		//public void FixRotateLength(Point point1, Point point2, int distance)
+		//{
+		//	int dx = Math.Abs(point1.X - point2.X);
+		//	int dy = Math.Abs(point1.Y - point2.Y);
+		//	if(dx == 0)
+		//	{
+		//		point2.X += distance;
+		//	}
+		//	else if(dy == 0)
+		//	{
+		//		point2.Y += distance;
+		//	}
+		//	else
+		//	{
+
+		//	}
+		//}
 
 		public override void TranslatingTransform(int trX, int trY)
 		{
@@ -89,10 +112,10 @@ namespace GraphicsEngineering.DataAccess.Models
 			Point worldC = C.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
 			Point worldD = D.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
 			lines.Clear();
-			lines.Add(new Line(worldA, worldB));
-			lines.Add(new Line(worldA, worldD));
-			lines.Add(new Line(worldD, worldC));
-			lines.Add(new Line(worldB, worldC));
+			lines.Add(new Line(worldA, worldB, Color));
+			lines.Add(new Line(worldA, worldD, Color));
+			lines.Add(new Line(worldD, worldC, Color));
+			lines.Add(new Line(worldB, worldC, Color));
 		}
 		public override void ScaleTransform(Point origin, double scaleX, double scaleY)
 		{
@@ -116,11 +139,19 @@ namespace GraphicsEngineering.DataAccess.Models
 			Point worldB = B.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
 			Point worldC = C.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
 			Point worldD = D.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
+
+			//double distanceAC = Math.Round(Math.Sqrt(Math.Pow(worldA.X - worldC.X, 2) + Math.Pow(worldA.Y - worldC.Y, 2)));
+			//double realDistance = Math.Round(Math.Sqrt(Height/5 * Height/5 + Width/5 * Width/5));
+			//if (distanceAC != realDistance)
+			//{
+
+			//}
+
 			lines.Clear();
-			lines.Add(new Line(worldA, worldB));
-			lines.Add(new Line(worldA, worldD));
-			lines.Add(new Line(worldD, worldC));
-			lines.Add(new Line(worldB, worldC));
+			lines.Add(new Line(worldA, worldB, Color));
+			lines.Add(new Line(worldA, worldD, Color));
+			lines.Add(new Line(worldD, worldC, Color));
+			lines.Add(new Line(worldB, worldC, Color));
 		}
 		public override void OppositeTransform(Point origin, OppositeType oppositeType)
 		{

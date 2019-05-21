@@ -78,9 +78,9 @@ namespace GraphicsEngineering.DataAccess.Models
 			Point worldBegin = Begin.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
 			Point worldEnd= End.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
 			return $"Line: \n" +
-				$"\t + Begin: {worldBegin.ToString()} \n" +
-				$"\t + End: {worldEnd.ToString()} \n" +
-				$"\t + Length: {(Length / 5).ToString()} \n";
+				$"\t      + Begin: {worldBegin.ToString()} \n" +
+				$"\t      + End: {worldEnd.ToString()} \n" +
+				$"\t      + Length: {(Length / 5).ToString()} \n";
 		}
 
 		// Khi chạy hiệu ứng cần update lại Begin, End, [Length]

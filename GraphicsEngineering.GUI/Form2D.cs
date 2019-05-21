@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Threading;
 using System.Windows.Forms;
-using GraphicsEngineering.DataAccess.ActionsHandler;
 using GraphicsEngineering.DataAccess.Common;
 using GraphicsEngineering.DataAccess.Models;
 
@@ -14,6 +12,7 @@ namespace GraphicsEngineering.GUI
 		private Grid grid;
 		private Mjolnir mjolnir;
 		private Human human;
+		private List<Lightning> lightnings;
 		private int count = 0;
 		private bool isDraw = false;
 		private bool actionHand90 = false;
@@ -22,6 +21,8 @@ namespace GraphicsEngineering.GUI
 		private bool actionMjolnir2Cap = false;
 		private bool actionHandUp = false;
 		private bool actionMjolnirStraight = false;
+		private List<bool> actionLightnings;
+		private bool actionSpinMjolnir = false;
 
 		public Form2D()
 		{
@@ -30,20 +31,38 @@ namespace GraphicsEngineering.GUI
 
 		private void Form2D_Load(object sender, EventArgs e)
 		{
+			SetUpBasic();
+			SetUpObjects();
+
+			isDraw = true;
+			//MessageBox.Show(pbDrawingArea.Size.ToString());
+		}
+		private void SetUpBasic()
+		{
 			Cons.WIDTH = pbDrawingArea.Width;
 			Cons.HEIGHT = pbDrawingArea.Height;
 			grid = new Grid(pbDrawingArea);
+			Size screenResolution = new Size(pbDrawingArea.Width / 5, pbDrawingArea.Height / 5);
+			lblScreenResolution.Text += screenResolution.ToString();
+		}
+		private void SetUpObjects()
+		{
+			lightnings = new List<Lightning>();
+			actionLightnings = new List<bool>();
 
-			//MessageBox.Show(pbDrawingArea.Size.ToString());
 			var mjolnirRect = new Rectangle(-100, 18, 10, 18);
-			mjolnir = new Mjolnir(mjolnirRect);
+			mjolnir = new Mjolnir(mjolnirRect, Color.FromArgb(136, 136, 134));
 			mjolnir.RotateTransform(mjolnir.Kernel, 180);
 
 			var humanRect = new Rectangle(60, 40, 30, 40);
-			human = new Human(humanRect);
+			human = new Human(humanRect, Color.White);
 
-			isDraw = true;
-			pbDrawingArea.Refresh();
+			lightnings.Add(new Lightning(new Point(70, 72), new Point(65, 44), Color.FromArgb(169, 41, 238)));
+			actionLightnings.Add(false);
+			lightnings.Add(new Lightning(new Point(65, 72), new Point(65, 44), Color.FromArgb(169, 41, 238)));
+			actionLightnings.Add(false);
+			lightnings.Add(new Lightning(new Point(60, 72), new Point(60, 44), Color.FromArgb(169, 41, 238)));
+			actionLightnings.Add(false);
 		}
 
 		private void lblMinimaze_Click(object sender, EventArgs e)
@@ -69,16 +88,20 @@ namespace GraphicsEngineering.GUI
 				grid.Clear();
 			}
 		}
+
+		private void btnPlay_Click(object sender, EventArgs e)
+		{
+			count = 0;
+			timer.Start();
+		}
+		private void btnPause_Click(object sender, EventArgs e)
+		{
+			timer.Stop();
+		}
 		private void btnStop_Click(object sender, EventArgs e)
 		{
 			timer.Stop();
 			//MessageBox.Show(count.ToString());
-		}
-
-		private void pbDrawingArea_MouseDown(object sender, MouseEventArgs e)
-		{
-			count = 0;
-			timer.Start();
 		}
 
 		private void pbDrawingArea_Paint(object sender, PaintEventArgs e)
@@ -109,9 +132,27 @@ namespace GraphicsEngineering.GUI
 				human.RotateRightArm(5);
 				mjolnir.RotateTransform(human.RightArm.End, 45);
 			}
-
-			if(isDraw)
+			else if(actionLightnings[0])
 			{
+				lightnings[0].Draw(e.Graphics, Dashes.Solid);
+			}
+			else if (actionLightnings[1])
+			{
+				lightnings[1].Draw(e.Graphics, Dashes.Solid);
+			}
+			else if (actionLightnings[2])
+			{
+				lightnings[2].Draw(e.Graphics, Dashes.Solid);
+			}
+			else if(actionSpinMjolnir)
+			{
+				//mjolnir.RotateTransform(human.RightArm.End, 45);
+			}
+
+			if (isDraw)
+			{
+				lblInfo.Text = human.ToString();
+				lblInfo.Text += mjolnir.ToString();
 				mjolnir.Draw(e.Graphics, Dashes.Solid);
 				human.Draw(e.Graphics, Dashes.Solid);
 				count++;
@@ -122,8 +163,9 @@ namespace GraphicsEngineering.GUI
 			actionMjolnir2Cap = false;
 			actionHandUp = false;
 			actionMjolnirStraight = false;
+			for (int i = 0; i < actionLightnings.Count; i++) actionLightnings[i] = false;
+			actionSpinMjolnir = false;
 		}
-
 		private void timer_Tick(object sender, EventArgs e)
 		{
 			if(count < 10)
@@ -138,23 +180,41 @@ namespace GraphicsEngineering.GUI
 			{
 				actionMjolnirRotate = true;
 			}
-			else if(count < 186)
+			else if(count < 187)
 			{
 				timer.Interval = 10;
 				actionMjolnir2Cap = true;
 			}
-			else if(count < 190)
+			else if(count < 191)
 			{
 				timer.Interval = 200;
 				actionHandUp = true;
 			}
-			else if(count < 191)
+			else if(count < 192)
 			{
 				timer.Interval = 1;
 				actionMjolnirStraight = true;
 			}
+			else if(count < 193)
+			{
+				timer.Interval = 200;
+				actionLightnings[0] = true;
+			}
+			else if(count < 194)
+			{
+				actionLightnings[1] = true;
+			}
+			else if(count < 195)
+			{
+				actionLightnings[2] = true;
+			}
+			else if(count < 250)
+			{
+				timer.Interval = 2000;
+				actionSpinMjolnir = true;
+			}
 
-			if(isDraw)
+			if (isDraw)
 			{
 				pbDrawingArea.Refresh();
 			}
