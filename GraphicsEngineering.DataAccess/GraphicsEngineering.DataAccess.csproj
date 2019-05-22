@@ -57,10 +57,12 @@
     <Compile Include="Models\Ellipse.cs" />
     <Compile Include="Models\Grid.cs" />
     <Compile Include="Models\Human.cs" />
+    <Compile Include="Models\IronMan.cs" />
     <Compile Include="Models\Lightning.cs" />
     <Compile Include="Models\Line.cs" />
     <Compile Include="Models\Mjolnir.cs" />
     <Compile Include="Models\MyRectangle.cs" />
+    <Compile Include="Models\MyTriangle.cs" />
     <Compile Include="Models\Shape.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

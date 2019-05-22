@@ -12,6 +12,7 @@ namespace GraphicsEngineering.GUI
 		private Grid grid;
 		private Mjolnir mjolnir;
 		private Human human;
+        private IronMan ironMan;
 		private List<Lightning> lightnings;
 		private int count = 0;
 		private bool isDraw = false;
@@ -57,7 +58,10 @@ namespace GraphicsEngineering.GUI
 			var humanRect = new Rectangle(60, 40, 30, 40);
 			human = new Human(humanRect, Color.Red);
 
-			lightnings.Add(new Lightning(new Point(70, 72), new Point(65, 44), Color.FromArgb(169, 41, 238)));
+            var ironManRect = new Rectangle(-60, 60, 30, 60);
+            ironMan = new IronMan(ironManRect, Color.Red);
+
+            lightnings.Add(new Lightning(new Point(70, 72), new Point(65, 44), Color.FromArgb(169, 41, 238)));
 			actionLightnings.Add(false);
 			lightnings.Add(new Lightning(new Point(65, 72), new Point(65, 44), Color.FromArgb(169, 41, 238)));
 			actionLightnings.Add(false);
@@ -117,7 +121,7 @@ namespace GraphicsEngineering.GUI
 			else if(actionMjolnirRotate)
 			{
 				mjolnir.RotateTransform(mjolnir.Kernel, 45);
-			}
+            }
 			else if(actionMjolnir2Cap)
 			{
 				mjolnir.TranslatingTransform(1, 0);
@@ -125,12 +129,12 @@ namespace GraphicsEngineering.GUI
 			else if(actionHandUp)
 			{
 				human.RotateRightArm(5);
-				mjolnir.TranslatingTransform(0, 1);
+                mjolnir.TranslatingTransform(0, 1);
 			}
 			else if(actionMjolnirStraight)
 			{
 				human.RotateRightArm(5);
-				mjolnir.RotateTransform(human.RightArm.End, 45);
+                mjolnir.RotateTransform(human.RightArm.End, 45);
 			}
 			else if(actionLightnings[0])
 			{
@@ -155,6 +159,7 @@ namespace GraphicsEngineering.GUI
 				lblInfo.Text += mjolnir.ToString();
 				mjolnir.Draw(e.Graphics, Dashes.Solid);
 				human.Draw(e.Graphics, Dashes.Solid);
+                ironMan.Draw(e.Graphics, Dashes.Solid);
 				count++;
 			}
 			actionHand90 = false;
