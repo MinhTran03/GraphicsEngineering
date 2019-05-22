@@ -75,29 +75,6 @@ namespace GraphicsEngineering.DataAccess.Models
 					$"      + Kernel: {worldKernel.ToString()} \n";
 		}
 
-		/// <summary>
-		/// Work on world coordinate
-		/// </summary>
-		/// <param name="point1">world Origin Point</param>
-		/// <param name="point2">world Fixed Point</param>
-		//public void FixRotateLength(Point point1, Point point2, int distance)
-		//{
-		//	int dx = Math.Abs(point1.X - point2.X);
-		//	int dy = Math.Abs(point1.Y - point2.Y);
-		//	if(dx == 0)
-		//	{
-		//		point2.X += distance;
-		//	}
-		//	else if(dy == 0)
-		//	{
-		//		point2.Y += distance;
-		//	}
-		//	else
-		//	{
-
-		//	}
-		//}
-
 		public override void TranslatingTransform(int trX, int trY)
 		{
 			Region.Location = Region.Location.Translating(trX, trY);
@@ -139,13 +116,6 @@ namespace GraphicsEngineering.DataAccess.Models
 			Point worldB = B.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
 			Point worldC = C.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
 			Point worldD = D.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
-
-			//double distanceAC = Math.Round(Math.Sqrt(Math.Pow(worldA.X - worldC.X, 2) + Math.Pow(worldA.Y - worldC.Y, 2)));
-			//double realDistance = Math.Round(Math.Sqrt(Height/5 * Height/5 + Width/5 * Width/5));
-			//if (distanceAC != realDistance)
-			//{
-
-			//}
 
 			lines.Clear();
 			lines.Add(new Line(worldA, worldB, Color));

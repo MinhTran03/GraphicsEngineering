@@ -12,8 +12,9 @@ namespace GraphicsEngineering.GUI
 		private Grid grid;
 		private Mjolnir mjolnir;
 		private Human human;
-        private IronMan ironMan;
 		private List<Lightning> lightnings;
+		private ZicZac zicZac;
+		private ZicZac zicZac1;
 		private int count = 0;
 		private bool isDraw = false;
 		private bool actionHand90 = false;
@@ -23,7 +24,8 @@ namespace GraphicsEngineering.GUI
 		private bool actionHandUp = false;
 		private bool actionMjolnirStraight = false;
 		private List<bool> actionLightnings;
-		private bool actionSpinMjolnir = false;
+		private bool actionMjolnirRotate2 = false;
+		private bool actionShootIronMan = false;
 
 		public Form2D()
 		{
@@ -51,21 +53,24 @@ namespace GraphicsEngineering.GUI
 			lightnings = new List<Lightning>();
 			actionLightnings = new List<bool>();
 
-			var mjolnirRect = new Rectangle(-100, 18, 10, 18);
+			var humanRect = new Rectangle(Cons.HUMAN_LOCATION, Cons.HUMAN_SIZE);
+			human = new Human(humanRect, Color.White);
+
+			var mjolnirRect = new Rectangle(Cons.MJOLNIR_LOCATION, Cons.MJOLNIR_SIZE);
 			mjolnir = new Mjolnir(mjolnirRect, Color.White);
 			mjolnir.RotateTransform(mjolnir.Kernel, 180);
 
-			var humanRect = new Rectangle(60, 40, 30, 40);
-			human = new Human(humanRect, Color.Red);
+			var beginZiczac = new Point(68, 22);
+			var endZiczac = new Point(-80, 22);
+			zicZac = new ZicZac(beginZiczac, endZiczac, Color.White);
+			zicZac1 = new ZicZac(zicZac.Begin.Translating(0, -1).ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT), 
+								zicZac.End.Translating(0, -1).ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT), Color.White);
 
-            var ironManRect = new Rectangle(-60, 60, 30, 60);
-            ironMan = new IronMan(ironManRect, Color.Red);
-
-            lightnings.Add(new Lightning(new Point(70, 72), new Point(65, 44), Color.FromArgb(169, 41, 238)));
+			lightnings.Add(new Lightning(new Point(Cons.HUMAN_LOCATION.X + 5, 72), 
+										new Point(Cons.HUMAN_LOCATION.X + 5, 44), Color.White));
 			actionLightnings.Add(false);
-			lightnings.Add(new Lightning(new Point(65, 72), new Point(65, 44), Color.FromArgb(169, 41, 238)));
-			actionLightnings.Add(false);
-			lightnings.Add(new Lightning(new Point(60, 72), new Point(60, 44), Color.FromArgb(169, 41, 238)));
+			lightnings.Add(new Lightning(lightnings[0].Begin.Translating(-1,0).ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT), 
+										lightnings[0].End.Translating(-1,0).ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT), Color.White));
 			actionLightnings.Add(false);
 		}
 
@@ -107,6 +112,18 @@ namespace GraphicsEngineering.GUI
 			timer.Stop();
 			//MessageBox.Show(count.ToString());
 		}
+		private void SetFalseAllActions()
+		{
+			actionHand90 = false;
+			actionMjolnirUp = false;
+			actionMjolnirRotate = false;
+			actionMjolnir2Cap = false;
+			actionHandUp = false;
+			actionMjolnirStraight = false;
+			for (int i = 0; i < actionLightnings.Count; i++) actionLightnings[i] = false;
+			actionMjolnirRotate2 = false;
+			actionShootIronMan = false;
+		}
 
 		private void pbDrawingArea_Paint(object sender, PaintEventArgs e)
 		{
@@ -121,7 +138,7 @@ namespace GraphicsEngineering.GUI
 			else if(actionMjolnirRotate)
 			{
 				mjolnir.RotateTransform(mjolnir.Kernel, 45);
-            }
+			}
 			else if(actionMjolnir2Cap)
 			{
 				mjolnir.TranslatingTransform(1, 0);
@@ -129,28 +146,28 @@ namespace GraphicsEngineering.GUI
 			else if(actionHandUp)
 			{
 				human.RotateRightArm(5);
-                mjolnir.TranslatingTransform(0, 1);
+				mjolnir.TranslatingTransform(0, 1);
 			}
 			else if(actionMjolnirStraight)
 			{
 				human.RotateRightArm(5);
-                mjolnir.RotateTransform(human.RightArm.End, 45);
+				mjolnir.RotateTransform(human.RightArm.End, 45);
 			}
 			else if(actionLightnings[0])
 			{
 				lightnings[0].Draw(e.Graphics, Dashes.Solid);
-			}
-			else if (actionLightnings[1])
-			{
 				lightnings[1].Draw(e.Graphics, Dashes.Solid);
 			}
-			else if (actionLightnings[2])
+			else if(actionMjolnirRotate2)
 			{
-				lightnings[2].Draw(e.Graphics, Dashes.Solid);
+				mjolnir.RotateTransform(human.RightArm.End, -90);
+				mjolnir.TranslatingTransform(0, -5);
+				human.RotateRightArm(-25);
 			}
-			else if(actionSpinMjolnir)
+			else if(actionShootIronMan)
 			{
-				//mjolnir.RotateTransform(human.RightArm.End, 45);
+				zicZac.Draw(e.Graphics, Dashes.Solid);
+				zicZac1.Draw(e.Graphics, Dashes.Solid);
 			}
 
 			if (isDraw)
@@ -159,17 +176,9 @@ namespace GraphicsEngineering.GUI
 				lblInfo.Text += mjolnir.ToString();
 				mjolnir.Draw(e.Graphics, Dashes.Solid);
 				human.Draw(e.Graphics, Dashes.Solid);
-                ironMan.Draw(e.Graphics, Dashes.Solid);
 				count++;
 			}
-			actionHand90 = false;
-			actionMjolnirUp = false;
-			actionMjolnirRotate = false;
-			actionMjolnir2Cap = false;
-			actionHandUp = false;
-			actionMjolnirStraight = false;
-			for (int i = 0; i < actionLightnings.Count; i++) actionLightnings[i] = false;
-			actionSpinMjolnir = false;
+			SetFalseAllActions();
 		}
 		private void timer_Tick(object sender, EventArgs e)
 		{
@@ -177,46 +186,42 @@ namespace GraphicsEngineering.GUI
 			{
 				actionHand90 = true;
 			}
-			else if(count < 29)
+			else if(count < 10 + 19)
 			{
 				actionMjolnirUp = true;
 			}
-			else if(count < 32)
+			else if(count < 29 + 3)
 			{
 				actionMjolnirRotate = true;
 			}
-			else if(count < 187)
+			else if(count < 32 + Cons.DISTANCE_THOR_MJOLNIR - Cons.MJOLNIR_SIZE.Width / 2)
 			{
-				timer.Interval = 5;
+				timer.Interval = 1;
 				actionMjolnir2Cap = true;
 			}
-			else if(count < 191)
+			else if(count < 128 + 3)
 			{
-				timer.Interval = 200;
+				timer.Interval = 50;
 				actionHandUp = true;
 			}
-			else if(count < 192)
+			else if(count < 131 + 1)
 			{
 				timer.Interval = 1;
 				actionMjolnirStraight = true;
 			}
-			else if(count < 193)
+			else if(count < 133 + 5)
 			{
 				timer.Interval = 200;
 				actionLightnings[0] = true;
 			}
-			else if(count < 194)
+			else if(count < 138 + 1)
 			{
-				actionLightnings[1] = true;
+				actionMjolnirRotate2 = true;
 			}
-			else if(count < 195)
+			else if(count < 139 +5)
 			{
-				actionLightnings[2] = true;
-			}
-			else if(count < 250)
-			{
-				timer.Interval = 2000;
-				actionSpinMjolnir = true;
+				timer.Interval = 200;
+				actionShootIronMan = true;
 			}
 
 			if (isDraw)
