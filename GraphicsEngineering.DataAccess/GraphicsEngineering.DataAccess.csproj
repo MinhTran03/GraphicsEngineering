@@ -53,7 +53,6 @@
     <Compile Include="Common\Enums.cs" />
     <Compile Include="Common\MatrixExtensions.cs" />
     <Compile Include="Common\MatrixTransform.cs" />
-    <Compile Include="Models\Brick.cs" />
     <Compile Include="Models\Circle.cs" />
     <Compile Include="Models\Ellipse.cs" />
     <Compile Include="Models\Grid.cs" />

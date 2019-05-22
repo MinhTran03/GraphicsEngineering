@@ -54,7 +54,7 @@ namespace GraphicsEngineering.DataAccess.Models
             RightEye = new MyRectangle(rectRightEye, color);
 
             //mouth
-            Mouth = new Line(new Point(x + 13, y - 13),new Point(x + 17,y - 13));
+            Mouth = new Line(new Point(x + 13, y - 13),new Point(x + 17,y - 13),Color.White);
 
             //neck
             Neck = new Line(new Point(x + width / 3, y - (height / 3 - 1)), new Point(x + width * 2 / 3, y - (height / 3 - 1)), color);
@@ -152,6 +152,10 @@ namespace GraphicsEngineering.DataAccess.Models
             RightArm.TranslatingTransform(trX, trY);
             LeftLeg.TranslatingTransform(trX, trY);
             RightLeg.TranslatingTransform(trX, trY);
+            Neck.TranslatingTransform(trX, trY);
+            Middle2Leg.TranslatingTransform(trX, trY);
+            RocketLeft.TranslatingTransform(trX, trY);
+            RocketRight.TranslatingTransform(trX, trY);
         }
 
 

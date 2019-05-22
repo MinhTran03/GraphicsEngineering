@@ -53,35 +53,37 @@ namespace GraphicsEngineering.DataAccess.Models
 			}
 		}
 
-		public void ZicZacTransform()
-		{
-			Point begin = Begin.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
-			Point end = End.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
+        public void ZicZacTransform()
+        {
+            Random rad = new Random();
 
-			int distance = Math.Abs(begin.X - end.X);
-			int distancePer10 = distance / 10;
+            Point begin = Begin.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
+            Point end = End.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
 
-			Points.Clear();
-			Lines.Clear();
+            int distance = Math.Abs(begin.X - end.X);
+            int distancePer10 = distance / 10;
 
-			Points.Add(new Point(begin.X - distancePer10, begin.Y - 3));
-			Points.Add(new Point(Points[0].X - distancePer10, begin.Y + 3));
-			Points.Add(new Point(Points[1].X - distancePer10, begin.Y - 3));
-			Points.Add(new Point(Points[2].X - distancePer10, begin.Y + 3));
-			Points.Add(new Point(Points[3].X - distancePer10, begin.Y - 3));
-			Points.Add(new Point(Points[4].X - distancePer10, begin.Y + 3));
-			Points.Add(new Point(Points[5].X - distancePer10, begin.Y - 3));
-			Points.Add(new Point(Points[6].X - distancePer10, begin.Y + 3));
-			Points.Add(new Point(Points[7].X - distancePer10, begin.Y - 3));
+            Points.Clear();
+            Lines.Clear();
 
-			for (int i = 0; i < 8; i++)
-			{
-				Lines.Add(new Line(Points[i], Points[i + 1], Color));
-			}
-			Lines.Add(new Line(Points[0], begin, Color));
-			Lines.Add(new Line(Points[8], end, Color));
-		}
-		public override void OppositeTransform(Point origin, OppositeType oppositeType)
+            Points.Add(new Point(begin.X - distancePer10, begin.Y - rad.Next(1, 3)));
+            Points.Add(new Point(Points[0].X - distancePer10, begin.Y + rad.Next(1, 3)));
+            Points.Add(new Point(Points[1].X - distancePer10, begin.Y - rad.Next(1, 3)));
+            Points.Add(new Point(Points[2].X - distancePer10, begin.Y + rad.Next(1, 3)));
+            Points.Add(new Point(Points[3].X - distancePer10, begin.Y - rad.Next(1, 3)));
+            Points.Add(new Point(Points[4].X - distancePer10, begin.Y + rad.Next(1, 3)));
+            Points.Add(new Point(Points[5].X - distancePer10, begin.Y - rad.Next(1, 3)));
+            Points.Add(new Point(Points[6].X - distancePer10, begin.Y + rad.Next(1, 3)));
+            Points.Add(new Point(Points[7].X - distancePer10, begin.Y - rad.Next(1, 3)));
+
+            for (int i = 0; i < 8; i++)
+            {
+                Lines.Add(new Line(Points[i], Points[i + 1], Color));
+            }
+            Lines.Add(new Line(Points[0], begin, Color));
+            Lines.Add(new Line(Points[8], end, Color));
+        }
+        public override void OppositeTransform(Point origin, OppositeType oppositeType)
 		{
 			throw new System.NotImplementedException();
 		}

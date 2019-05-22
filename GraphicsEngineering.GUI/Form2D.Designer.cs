@@ -39,9 +39,10 @@
             this.btnPause = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
             this.grbScreen = new System.Windows.Forms.GroupBox();
-            this.ckbGridDraw = new GraphicsEngineering.GUI.MyCheckBox();
             this.pbDrawingArea = new System.Windows.Forms.PictureBox();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.ckbGridDraw = new GraphicsEngineering.GUI.MyCheckBox();
             this.pnMenuBar.SuspendLayout();
             this.grbCoordinates.SuspendLayout();
             this.grbScreen.SuspendLayout();
@@ -176,19 +177,6 @@
             this.grbScreen.TabStop = false;
             this.grbScreen.Text = "Screen";
             // 
-            // ckbGridDraw
-            // 
-            this.ckbGridDraw.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ckbGridDraw.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ckbGridDraw.Location = new System.Drawing.Point(994, 576);
-            this.ckbGridDraw.Name = "ckbGridDraw";
-            this.ckbGridDraw.Padding = new System.Windows.Forms.Padding(3);
-            this.ckbGridDraw.Size = new System.Drawing.Size(58, 28);
-            this.ckbGridDraw.TabIndex = 3;
-            this.ckbGridDraw.Text = "myCheckBox1";
-            this.ckbGridDraw.UseVisualStyleBackColor = false;
-            this.ckbGridDraw.CheckedChanged += new System.EventHandler(this.ckbGridDraw_CheckedChanged);
-            // 
             // pbDrawingArea
             // 
             this.pbDrawingArea.BackColor = System.Drawing.SystemColors.ControlDarkDark;
@@ -204,6 +192,24 @@
             // 
             this.timer.Interval = 50;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 300;
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            // 
+            // ckbGridDraw
+            // 
+            this.ckbGridDraw.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ckbGridDraw.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ckbGridDraw.Location = new System.Drawing.Point(994, 576);
+            this.ckbGridDraw.Name = "ckbGridDraw";
+            this.ckbGridDraw.Padding = new System.Windows.Forms.Padding(3);
+            this.ckbGridDraw.Size = new System.Drawing.Size(58, 28);
+            this.ckbGridDraw.TabIndex = 3;
+            this.ckbGridDraw.Text = "myCheckBox1";
+            this.ckbGridDraw.UseVisualStyleBackColor = false;
+            this.ckbGridDraw.CheckedChanged += new System.EventHandler(this.ckbGridDraw_CheckedChanged);
             // 
             // Form2D
             // 
@@ -242,6 +248,7 @@
 		private System.Windows.Forms.Button btnPlay;
 		private System.Windows.Forms.Button btnPause;
 		private System.Windows.Forms.Timer timer;
-	}
+        private System.Windows.Forms.Timer timer1;
+    }
 }
 
