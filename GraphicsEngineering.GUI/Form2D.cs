@@ -31,6 +31,7 @@ namespace GraphicsEngineering.GUI
 		private List<bool> actionLightnings;
 		private bool actionMjolnirRotate2 = false;
 		private bool actionShootIronMan = false;
+		private bool actionShootIronMan2 = false;
 		private bool ironManUp = false;
 		private bool ironManDown = false;
 		private bool actionIronGetHit = false;
@@ -65,7 +66,7 @@ namespace GraphicsEngineering.GUI
 			lightnings = new List<Lightning>();
 			actionLightnings = new List<bool>();
 
-			ironMan = new IronMan(new Rectangle(-70, 60, 30, 60), Color.FromArgb(127, 1, 2));
+			ironMan = new IronMan(new Rectangle(-70, 60, 30, 60), Color.DarkRed);
 
 			var humanRect = new Rectangle(Cons.HUMAN_LOCATION, Cons.HUMAN_SIZE);
 			human = new Thor(humanRect, Color.White);
@@ -75,7 +76,7 @@ namespace GraphicsEngineering.GUI
 			mjolnir.RotateTransform(mjolnir.Kernel, 180);
 
 			var beginZiczac = new Point(65, 26);
-			var endZiczac = new Point(-45, 26);
+			var endZiczac = new Point(-47, 26);
 			zicZac = new ZicZac(beginZiczac, endZiczac, Color.White);
 			zicZac1 = new ZicZac(zicZac.Begin.Translating(0, -1).ToWorldCoordinates(),
 								zicZac.End.Translating(0, -1).ToWorldCoordinates(), Color.White);
@@ -148,6 +149,7 @@ namespace GraphicsEngineering.GUI
 			actionHumanHandDown = false;
 			actionKamehamehaGo1 = false;
 			actionKamehamehaGo2 = false;
+			actionShootIronMan2 = false;
 		}
 
 		private void pbDrawingArea_Paint(object sender, PaintEventArgs e)
@@ -190,6 +192,16 @@ namespace GraphicsEngineering.GUI
 				human.RotateRightArm(-20);
 			}
 			else if (actionShootIronMan)
+			{
+				zicZac.ZicZacTransform();
+				zicZac1.ZicZacTransform();
+				zicZac.End = zicZac.End.Translating(-1, 0);
+				zicZac1.End = zicZac1.End.Translating(-1, 0);
+				zicZac.Draw(e.Graphics, Dashes.Solid);
+				zicZac1.Draw(e.Graphics, Dashes.Solid);
+				ironMan.TranslatingTransform(-1, 0);
+			}
+			else if(actionShootIronMan2)
 			{
 				zicZac.ZicZacTransform();
 				zicZac1.ZicZacTransform();
@@ -242,16 +254,16 @@ namespace GraphicsEngineering.GUI
 				kamehamehaGo1.Draw(e.Graphics, Dashes.Solid);
 				e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(83, 133, 243)), 
 									kamehamehaGo1.Region.X - 1, kamehamehaGo1.Region.Y - 1,
-									kamehamehaGo1.Region.Width + 3, kamehamehaGo1.Region.Height + 3);
+									kamehamehaGo1.Region.Width + 8, kamehamehaGo1.Region.Height + 3);
 
 				// tính vị trí của kamehamehaGo2
-				location = location.ToComputerCoordinates().Translating(35, 0);
+				location = location.ToComputerCoordinates().Translating(45, 0);
 				kamehamehaGo2 = new MyRectangle(new Rectangle(location.ToWorldCoordinates(), 
-															new Size(70, 2)), Color.DarkSlateBlue);
+															new Size(75, 2)), Color.DarkSlateBlue);
 
 				// di chuyển đến vị trí Thor
-				kamehamehaSmall.TranslatingTransform(100, 0);
-				kamehamehaBig.TranslatingTransform(100, 0);
+				kamehamehaSmall.TranslatingTransform(110, 0);
+				kamehamehaBig.TranslatingTransform(110, 0);
 
 				//thor đưa tay trái cầm búa
 				mjolnir.TranslatingTransform(-1, 1);
@@ -340,31 +352,36 @@ namespace GraphicsEngineering.GUI
 				timer.Interval = 1;
 				actionMjolnirRotate2 = true;
 			}
-			else if (count < 140 + 8)
+			else if (count < 140 + 10)
 			{
-				timer.Interval = 50;
+				timer1.Stop();
+				timer.Interval = 100;
 				actionShootIronMan = true;
 			}
-			else if (count < 148 + 1)
+			else if (count < 150 + 5)
+			{
+				actionShootIronMan2 = true;
+			}
+			else if (count < 155 + 1)
 			{
 				timer.Interval = 1;
 				actionIronGetHit = true;
 			}
-			else if (count < 149 + 1)
+			else if (count < 156 + 1)
 			{
 				timer.Interval = 500;
 				actionHumanHandDown = true;
 			}
-			else if (count < 150 + 2)
+			else if (count < 157 + 2)
 			{
 				actionKamehamehaCharge = true;
 			}
-			else if (count < 152 + 1)
+			else if (count < 159 + 1)
 			{
 				timer.Interval = 500;
 				actionKamehamehaGo1 = true;
 			}
-			else if (count < 153 + 1)
+			else if (count < 160 + 1)
 			{
 				actionKamehamehaGo2 = true;
 			}
@@ -386,7 +403,5 @@ namespace GraphicsEngineering.GUI
 				ironManDown = true;
 			}
 		}
-
-		
 	}
 }

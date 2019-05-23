@@ -66,15 +66,15 @@ namespace GraphicsEngineering.DataAccess.Models
             Points.Clear();
             Lines.Clear();
 
-            Points.Add(new Point(begin.X - distancePer10, begin.Y - rad.Next(1, 3)));
-            Points.Add(new Point(Points[0].X - distancePer10, begin.Y + rad.Next(1, 3)));
-            Points.Add(new Point(Points[1].X - distancePer10, begin.Y - rad.Next(1, 3)));
-            Points.Add(new Point(Points[2].X - distancePer10, begin.Y + rad.Next(1, 3)));
-            Points.Add(new Point(Points[3].X - distancePer10, begin.Y - rad.Next(1, 3)));
-            Points.Add(new Point(Points[4].X - distancePer10, begin.Y + rad.Next(1, 3)));
-            Points.Add(new Point(Points[5].X - distancePer10, begin.Y - rad.Next(1, 3)));
-            Points.Add(new Point(Points[6].X - distancePer10, begin.Y + rad.Next(1, 3)));
-            Points.Add(new Point(Points[7].X - distancePer10, begin.Y - rad.Next(1, 3)));
+            Points.Add(new Point(begin.X - distancePer10, begin.Y - rad.Next(-3, 3)));
+            Points.Add(new Point(Points[0].X - distancePer10, begin.Y + rad.Next(-3, 3)));
+            Points.Add(new Point(Points[1].X - distancePer10, begin.Y - rad.Next(-3, 3)));
+            Points.Add(new Point(Points[2].X - distancePer10, begin.Y + rad.Next(-3, 3)));
+            Points.Add(new Point(Points[3].X - distancePer10, begin.Y - rad.Next(-3, 3)));
+            Points.Add(new Point(Points[4].X - distancePer10, begin.Y + rad.Next(-3, 3)));
+            Points.Add(new Point(Points[5].X - distancePer10, begin.Y - rad.Next(-3, 3)));
+            Points.Add(new Point(Points[6].X - distancePer10, begin.Y + rad.Next(-3, 3)));
+            Points.Add(new Point(Points[7].X - distancePer10, begin.Y - rad.Next(-3, 3)));
 
             for (int i = 0; i < 8; i++)
             {
