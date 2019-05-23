@@ -30,16 +30,17 @@ namespace GraphicsEngineering.DataAccess.Models
 
 		public override void Draw(Graphics graphics, Dashes dashes)
 		{
-			base.Graphics?.Dispose();
 			base.Graphics = graphics;
 
 			int x, y;
 			var R = Region.Width / 2;
 			var kernel = new Point(Region.X + R, Region.Y + R);
+			kernel.X = kernel.X.Round5();
+			kernel.Y = kernel.Y.Round5();
 
 			x = 0;
 			y = R;
-			Put8PixelCircle(Color, kernel, (int)x, (int)y);
+			Put8PixelCircle(Color, kernel, x, y.Round5());
 			long p = 1 - R; // 5/4-R
 			while (x < y)
 			{
@@ -57,7 +58,7 @@ namespace GraphicsEngineering.DataAccess.Models
 		}
 		public override string ToString()
 		{
-			Point worldKernel = Kernel.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
+			Point worldKernel = Kernel.ToWorldCoordinates();
 			return $"Circle \n" +
 				$"\t      + Kernel: {worldKernel.ToString()} \n" +
 				$"\t      + Radius: {(Radius / 5).ToString()} \n";

@@ -5,7 +5,7 @@ using System.Drawing;
 
 namespace GraphicsEngineering.DataAccess.Models
 {
-	public class MyRectangle : Shape
+	public class Trapezoid : Shape
 	{
 		public Point A { get; set; }
 		public Point B { get; set; }
@@ -15,8 +15,8 @@ namespace GraphicsEngineering.DataAccess.Models
 		public double Height { get; set; }
 		private List<Line> lines { get; set; }
 
-		public MyRectangle(Rectangle rect) : this(rect, Color.Black) { }
-		public MyRectangle(Rectangle rect, Color color)
+		public Trapezoid(Rectangle rect) : this(rect, Color.Black) { }
+		public Trapezoid(Rectangle rect, Color color)
 			: base(rect, color)
 		{
 			lines = new List<Line>();
@@ -31,8 +31,9 @@ namespace GraphicsEngineering.DataAccess.Models
 		private void OnChangedRegionValue()
 		{
 			//code chỗ này hơi ngu => sửa sau
-			A = new Point(Region.X, Region.Y);
-			B = new Point(Region.X + Region.Width, Region.Y);
+			int special = Region.Width / 4;
+			A = new Point(Region.X + special, Region.Y);
+			B = new Point(Region.X + Region.Width - special, Region.Y);
 			C = new Point(Region.X + Region.Width, Region.Y + Region.Height);
 			D = new Point(Region.X, Region.Y + Region.Height);
 			// Khi new 1 line thì Begin và End truyền vô sẽ được chuyển sang tọa độ máy

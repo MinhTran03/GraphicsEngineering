@@ -36,23 +36,29 @@ namespace GraphicsEngineering.DataAccess.Common
 			return matrix;
 		}
 
-		public static Point ToWorldCoordinates(this Point computerCoordinates, int width, int height)
+		public static Point ToWorldCoordinates(this Point computerCoordinates)
 		{
+			int width = Cons.WIDTH;
+			int height = Cons.HEIGHT;
 			return new Point((computerCoordinates.X - (width / 2)) / 5, 
 							((height / 2) - computerCoordinates.Y) / 5);
 		}
 
-		public static Point ToComputerCoordinates(this Point worldCoordinates, int width, int height)
+		public static Point ToComputerCoordinates(this Point worldCoordinates)
 		{
+			int width = Cons.WIDTH;
+			int height = Cons.HEIGHT;
 			return new Point(worldCoordinates.X * 5 + (width / 2), 
 							(height / 2) - worldCoordinates.Y * 5);
 		}
 
-		public static Rectangle ToWorldRectangle(this Rectangle computerRectangle, int width, int height)
+		public static Rectangle ToWorldRectangle(this Rectangle computerRectangle)
 		{
+			int width = Cons.WIDTH;
+			int height = Cons.HEIGHT;
 			computerRectangle.Width /= 5;
 			computerRectangle.Height /= 5;
-			computerRectangle.Location = computerRectangle.Location.ToWorldCoordinates(width, height);
+			computerRectangle.Location = computerRectangle.Location.ToWorldCoordinates();
 			return computerRectangle;
 		}
 	}

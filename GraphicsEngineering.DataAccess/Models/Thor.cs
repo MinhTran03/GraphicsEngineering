@@ -9,7 +9,7 @@ using GraphicsEngineering.DataAccess.Common;
 
 namespace GraphicsEngineering.DataAccess.Models
 {
-	public class Human : Shape
+	public class Thor : Shape
 	{
 		public Circle Head { get; set; }
 		public Line Body { get; set; }
@@ -22,8 +22,8 @@ namespace GraphicsEngineering.DataAccess.Models
 		/// Only work on 3x4 screen
 		/// </summary>
 		/// <param name="rect"></param>
-		public Human(Rectangle rect) : this(rect, Color.Black) { }
-		public Human(Rectangle rect, Color color)
+		public Thor(Rectangle rect) : this(rect, Color.Black) { }
+		public Thor(Rectangle rect, Color color)
 			: base(rect, color)
 		{
 			int x = rect.X;
@@ -39,14 +39,14 @@ namespace GraphicsEngineering.DataAccess.Models
 									new Point(x + centerWidth, y - (int)(height * 0.7f)), color);
 			RightArm = new Line(new Point(x + centerWidth, y - (int)(height * 0.43f)),
 									new Point(x + (width - headSize) / 2, y - (int)(height * 0.7f)), color);
-			Point worldBeginRightArm = RightArm.Begin.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
-			Point worldEndRightArm = RightArm.End.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
+			Point worldBeginRightArm = RightArm.Begin.ToWorldCoordinates();
+			Point worldEndRightArm = RightArm.End.ToWorldCoordinates();
 			LeftArm = new Line(worldBeginRightArm,
 								worldEndRightArm.Opposite(worldBeginRightArm, OppositeType.VerticalAxis), color);
 			RightLeg = new Line(new Point(x + centerWidth, y - (int)(height * 0.7f)),
 									new Point(x + (width - headSize) / 2, y - height), color);
-			Point worldBeginRightLeg = RightLeg.Begin.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
-			Point worldEndRightLeg = RightLeg.End.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
+			Point worldBeginRightLeg = RightLeg.Begin.ToWorldCoordinates();
+			Point worldEndRightLeg = RightLeg.End.ToWorldCoordinates();
 			LeftLeg = new Line(worldBeginRightLeg,
 								worldEndRightLeg.Opposite(worldBeginRightArm, OppositeType.VerticalAxis), color);
 		}
@@ -98,6 +98,11 @@ namespace GraphicsEngineering.DataAccess.Models
 		{
 			Point origin = RightArm.Begin;
 			RightArm.End = RightArm.End.Rotate(origin, angle);
+		}
+		public void RotateLeftArm(int angle)
+		{
+			Point origin = LeftArm.Begin;
+			LeftArm.End = LeftArm.End.Rotate(origin, angle);
 		}
 	}
 }

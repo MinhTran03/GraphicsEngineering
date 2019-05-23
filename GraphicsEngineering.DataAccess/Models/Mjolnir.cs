@@ -15,7 +15,7 @@ namespace GraphicsEngineering.DataAccess.Models
         {
             Rectangle bodyRect = rect;
             Kernel = new Point(rect.X + rect.Width / 2, rect.Y - rect.Height / 2)
-                                    .ToComputerCoordinates(Cons.WIDTH, Cons.HEIGHT);
+                                    .ToComputerCoordinates();
             var beginHelve = new Point(rect.X + rect.Width / 2, rect.Y - rect.Height / 3);
             var endHelve = new Point(rect.X + rect.Width / 2, rect.Y - rect.Height);
             bodyRect.Height /= 3;

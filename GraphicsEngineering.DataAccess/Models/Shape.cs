@@ -18,7 +18,7 @@ namespace GraphicsEngineering.DataAccess.Models
 		{
 			rect.Width *= 5;
 			rect.Height *= 5;
-			rect.Location = rect.Location.ToComputerCoordinates(Cons.WIDTH, Cons.HEIGHT);
+			rect.Location = rect.Location.ToComputerCoordinates();
 			Region = rect;
 			Kernel = new Point(rect.X + (rect.Width / 2), rect.Y + (rect.Height / 2));
 		}
@@ -27,8 +27,8 @@ namespace GraphicsEngineering.DataAccess.Models
 		// Constructor cho line
 		public Shape(Point begin, Point end)
 		{
-			Begin = begin.ToComputerCoordinates(Cons.WIDTH, Cons.HEIGHT);
-			End = end.ToComputerCoordinates(Cons.WIDTH, Cons.HEIGHT);
+			Begin = begin.ToComputerCoordinates();
+			End = end.ToComputerCoordinates();
 		}
 		public Shape(Point begin, Point end, Color color)
 			: this(begin, end) => Color = color;

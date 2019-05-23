@@ -9,8 +9,6 @@ namespace GraphicsEngineering.DataAccess.Models
     {
         public Point A { get; set; }
         public Point B { get; set; }
-        public Point C { get; set; }
-        public Point D { get; set; }
         public Point G { get; set; }
         public double Width { get; set; }
         public double Height { get; set; }
@@ -23,7 +21,7 @@ namespace GraphicsEngineering.DataAccess.Models
             lines = new List<Line>();
             OnChangedRegionValue();
             Width = Math.Abs(B.X - A.X);
-            Height = Math.Abs(D.Y - A.Y);
+            Height = Math.Abs(G.Y - A.Y);
         }
 
         /// <summary>
@@ -34,21 +32,14 @@ namespace GraphicsEngineering.DataAccess.Models
             //code chỗ này hơi ngu => sửa sau
             A = new Point(Region.X, Region.Y);
             B = new Point(Region.X + Region.Width, Region.Y);
-            C = new Point(Region.X + Region.Width, Region.Y + Region.Height);
-            D = new Point(Region.X, Region.Y + Region.Height);
             G = new Point((Region.X + Region.Width / 2), Region.Y + Region.Height);
             // Khi new 1 line thì Begin và End truyền vô sẽ được chuyển sang tọa độ máy
             // mà ABCD đã là tọa độ máy => cần chuyển về tọa độ ng dùng
-            Point worldA = A.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
-            Point worldB = B.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
-            Point worldC = C.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
-            Point worldD = D.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
-            Point worldG = G.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
+            Point worldA = A.ToWorldCoordinates();
+            Point worldB = B.ToWorldCoordinates();
+            Point worldG = G.ToWorldCoordinates();
             lines.Clear();
             lines.Add(new Line(worldA, worldB, Color));
-            //lines.Add(new Line(worldA, worldD, Color));
-            //lines.Add(new Line(worldD, worldC, Color));
-            //lines.Add(new Line(worldB, worldC, Color));
             lines.Add(new Line(worldA, worldG, Color));
             lines.Add(new Line(worldB, worldG, Color));
         }
@@ -64,45 +55,19 @@ namespace GraphicsEngineering.DataAccess.Models
         {
             double worldWidth = Width / 5;
             double worldHeight = Height / 5;
-            Point worldKernel = Kernel.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
-            Point worldA = A.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
-            Point worldB = B.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
-            Point worldC = C.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
-            Point worldD = D.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
-            Point worldG = D.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
+            Point worldKernel = Kernel.ToWorldCoordinates();
+            Point worldA = A.ToWorldCoordinates();
+            Point worldB = B.ToWorldCoordinates();
+            Point worldG = G.ToWorldCoordinates();
 
             return $"Rectangle:\n" +
                     $"      + A: {worldA.ToString()} \n" +
                     $"      + B: {worldB.ToString()} \n" +
-                    $"      + C: {worldC.ToString()} \n" +
-                    $"      + D: {worldD.ToString()} \n" +
+                    $"      + G: {worldG.ToString()} \n" +
                     $"      + Width: {worldWidth.ToString()} \n" +
                     $"      + Height: {worldHeight.ToString()} \n" +
                     $"      + Kernel: {worldKernel.ToString()} \n";
         }
-
-        /// <summary>
-        /// Work on world coordinate
-        /// </summary>
-        /// <param name="point1">world Origin Point</param>
-        /// <param name="point2">world Fixed Point</param>
-        //public void FixRotateLength(Point point1, Point point2, int distance)
-        //{
-        //	int dx = Math.Abs(point1.X - point2.X);
-        //	int dy = Math.Abs(point1.Y - point2.Y);
-        //	if(dx == 0)
-        //	{
-        //		point2.X += distance;
-        //	}
-        //	else if(dy == 0)
-        //	{
-        //		point2.Y += distance;
-        //	}
-        //	else
-        //	{
-
-        //	}
-        //}
 
         public override void TranslatingTransform(int trX, int trY)
         {
@@ -111,20 +76,13 @@ namespace GraphicsEngineering.DataAccess.Models
 
             A = A.Translating(trX, trY);
             B = B.Translating(trX, trY);
-            C = C.Translating(trX, trY);
-            D = D.Translating(trX, trY);
             G = G.Translating(trX, trY);
-            Point worldA = A.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
-            Point worldB = B.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
-            Point worldC = C.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
-            Point worldD = D.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
-            Point worldG = G.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
+            Point worldA = A.ToWorldCoordinates();
+            Point worldB = B.ToWorldCoordinates();
+            Point worldG = G.ToWorldCoordinates();
 
             lines.Clear();
             lines.Add(new Line(worldA, worldB, Color));
-            //lines.Add(new Line(worldA, worldD, Color));
-            //lines.Add(new Line(worldD, worldC, Color));
-            //lines.Add(new Line(worldB, worldC, Color));
             lines.Add(new Line(worldA, worldG, Color));
             lines.Add(new Line(worldB, worldG, Color));
         }
@@ -144,27 +102,13 @@ namespace GraphicsEngineering.DataAccess.Models
 
             A = A.Rotate(origin, angle);
             B = B.Rotate(origin, angle);
-            C = C.Rotate(origin, angle);
-            D = D.Rotate(origin, angle);
             G = G.Rotate(origin, angle);
-            Point worldA = A.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
-            Point worldB = B.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
-            Point worldC = C.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
-            Point worldD = D.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
-            Point worldG = G.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
-
-            //double distanceAC = Math.Round(Math.Sqrt(Math.Pow(worldA.X - worldC.X, 2) + Math.Pow(worldA.Y - worldC.Y, 2)));
-            //double realDistance = Math.Round(Math.Sqrt(Height/5 * Height/5 + Width/5 * Width/5));
-            //if (distanceAC != realDistance)
-            //{
-
-            //}
+            Point worldA = A.ToWorldCoordinates();
+            Point worldB = B.ToWorldCoordinates();
+            Point worldG = G.ToWorldCoordinates();
 
             lines.Clear();
             lines.Add(new Line(worldA, worldB, Color));
-            //lines.Add(new Line(worldA, worldD, Color));
-            //lines.Add(new Line(worldD, worldC, Color));
-            //lines.Add(new Line(worldB, worldC, Color));
             lines.Add(new Line(worldA, worldG, Color));
             lines.Add(new Line(worldB, worldG, Color));
         }

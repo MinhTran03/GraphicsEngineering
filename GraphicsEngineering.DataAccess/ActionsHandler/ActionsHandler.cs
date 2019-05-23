@@ -37,7 +37,7 @@ namespace GraphicsEngineering.DataAccess.ActionsHandler
 		public Point Origin
 		{
 			get { return _origin; }
-			set { _origin = value.ToComputerCoordinates(DrawingArea.Width, DrawingArea.Height); }
+			set { _origin = value.ToComputerCoordinates(); }
 		}
 
 		public ActionsHandler(PictureBox drawingArea)

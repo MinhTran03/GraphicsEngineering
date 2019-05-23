@@ -28,12 +28,14 @@ namespace GraphicsEngineering.DataAccess.Models
 
 		public override void Draw(Graphics graphics, Dashes dashes)
 		{
-			//base.Graphics?.Dispose();
 			base.Graphics = graphics;
 
 			int a = Region.Width / 2;
 			int b = Region.Height / 2;
-			Point kernel = new Point(Region.X + (int)a, Region.Y + (int)b);
+			Point kernel = new Point(Region.X + a, Region.Y + b);
+			kernel.X = kernel.X.Round5();
+			kernel.Y = kernel.Y.Round5();
+
 			int x = 0;
 			int y = b;
 			long a2 = a * a;
@@ -41,7 +43,7 @@ namespace GraphicsEngineering.DataAccess.Models
 			long fx = 0;
 			long fy = 2 * a2 * y;
 			double p = b2 - (a2 * b) + (a2 / 4); //đây là P0(0, b) => f(1, b-1/2)
-			Put4PixelsEllipse(Color, kernel, x, y);
+			Put4PixelsEllipse(Color, kernel, x, y.Round5());
 			while (fx < fy)
 			{
 				x++;
@@ -76,7 +78,7 @@ namespace GraphicsEngineering.DataAccess.Models
 		}
 		public override string ToString()
 		{
-			Point worldKernel = Kernel.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
+			Point worldKernel = Kernel.ToWorldCoordinates();
 			return $"Ellipse: \n" +
 				$"\t + Kernel: {worldKernel.ToString()} \n" +
 				$"\t + Radius A: {(RadiusA / 5).ToString()} \n" +

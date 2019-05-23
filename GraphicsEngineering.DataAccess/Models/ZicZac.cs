@@ -19,8 +19,8 @@ namespace GraphicsEngineering.DataAccess.Models
 		public ZicZac(Point begin, Point end, Color color)
 			: base(begin, end, color)
 		{
-			int distance = Math.Abs(begin.X - end.X);
-			int distancePer10 = distance / 10;
+			int distanceX = Math.Abs(begin.X - end.X);
+			int distancePer10 = distanceX / 10;
 
 			Points = new List<Point>();
 			Lines = new List<Line>();
@@ -57,8 +57,8 @@ namespace GraphicsEngineering.DataAccess.Models
         {
             Random rad = new Random();
 
-            Point begin = Begin.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
-            Point end = End.ToWorldCoordinates(Cons.WIDTH, Cons.HEIGHT);
+            Point begin = Begin.ToWorldCoordinates();
+            Point end = End.ToWorldCoordinates();
 
             int distance = Math.Abs(begin.X - end.X);
             int distancePer10 = distance / 10;
