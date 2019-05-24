@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Media;
 using System.Windows.Forms;
 using GraphicsEngineering.DataAccess.Common;
 using GraphicsEngineering.DataAccess.Models;
@@ -39,6 +40,7 @@ namespace GraphicsEngineering.GUI
 		private bool actionKamehamehaCharge = false;
 		private bool actionKamehamehaGo1 = false;
 		private bool actionKamehamehaGo2 = false;
+        private SoundPlayer player = new SoundPlayer();
 
 		public Form2D()
 		{
@@ -51,7 +53,8 @@ namespace GraphicsEngineering.GUI
 			SetUpObjects();
 
 			isDraw = true;
-			//MessageBox.Show(pbDrawingArea.Size.ToString());
+            //MessageBox.Show(pbDrawingArea.Size.ToString());
+            player.SoundLocation = @"C:\Users\quylo\Downloads\Music\audio.wav";
 		}
 
 		private void SetUpBasic()
@@ -82,7 +85,7 @@ namespace GraphicsEngineering.GUI
 			zicZac1 = new ZicZac(zicZac.Begin.Translating(0, -1).ToWorldCoordinates(),
 								zicZac.End.Translating(0, -1).ToWorldCoordinates(), Color.White);
 
-			lightnings.Add(new Lightning(new Point(Cons.HUMAN_LOCATION.X + 2, 72),
+			lightnings.Add(new Lightning(new Point(Cons.HUMAN_LOCATION.X + 2, 103),
 										new Point(Cons.HUMAN_LOCATION.X + 2, 48), Color.White));
 			actionLightnings.Add(false);
 			lightnings.Add(new Lightning(lightnings[0].Begin.Translating(-1, 0).ToWorldCoordinates(),
@@ -119,7 +122,9 @@ namespace GraphicsEngineering.GUI
 			//count = 0;
 			timer.Start();
 			timer1.Start();
-		}
+            player.Play();
+
+        }
 		private void btnReset_Click(object sender, EventArgs e)
 		{
 			count = -1;
@@ -335,53 +340,53 @@ namespace GraphicsEngineering.GUI
 			{
 				actionMjolnir2Cap = true;
 			}
-			else if (count < 129 + 4)
+			else if (count < 59 + 4)
 			{
 				actionHandUp = true;
 			}
-			else if (count < 133 + 1)
+			else if (count < 63 + 1)
 			{
 				actionMjolnirStraight = true;
 			}
-			else if (count < 134 + 5)
+			else if (count < 64 + 5)
 			{
-				timer.Interval = 200;
+				timer.Interval = 350;
 				actionLightnings[0] = true;
 			}
-			else if (count < 139 + 1)
+			else if (count < 69 + 1)
 			{
 				timer.Interval = 1;
 				actionMjolnirRotate2 = true;
 			}
-			else if (count < 140 + 10)
+			else if (count < 70 + 10)
 			{
 				timer1.Stop();
-				timer.Interval = 100;
+				timer.Interval = 190;
 				actionShootIronMan = true;
 			}
-			else if (count < 150 + 5)
+			else if (count < 80 + 5)
 			{
 				actionShootIronMan2 = true;
 			}
-			else if (count < 155 + 1)
+			else if (count < 85 + 1)
 			{
 				timer.Interval = 1;
 				actionIronGetHit = true;
 			}
-			else if (count < 156 + 1)
+			else if (count < 86 + 1)
 			{
 				actionHumanHandDown = true;
 			}
-			else if (count < 157 + 2)
+			else if (count < 87 + 2)
 			{
 				timer.Interval = 300;
 				actionKamehamehaCharge = true;
 			}
-			else if (count < 159 + 1)
+			else if (count < 89 + 1)
 			{
 				actionKamehamehaGo1 = true;
 			}
-			else if (count < 160 + 1)
+			else if (count < 90 + 1)
 			{
 				actionKamehamehaGo2 = true;
 			}
