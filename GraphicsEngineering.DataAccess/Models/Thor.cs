@@ -63,13 +63,13 @@ namespace GraphicsEngineering.DataAccess.Models
 		public override string ToString()
 		{
 			return 
-				$"> Human \n" +
-				$"  - Head: {Head.ToString()}" +
-				$"  - Body: {Body.ToString()}" +
-				$"  - Right Arm: {RightArm.ToString()}" +
-				$"  - Left Arm: {LeftArm.ToString()}" +
-				$"  - Right Leg: {RightLeg.ToString()}" +
-				$"  - Left Leg: {LeftLeg.ToString()}";
+				$"> Thor \r\n" +
+				$"  - Head: {Head.ToString()}\r\n" +
+				$"  - Body: {Body.ToString()}\r\n" +
+				$"  - Right Arm: {RightArm.ToString()}\r\n" +
+				$"  - Left Arm: {LeftArm.ToString()}\r\n" +
+				$"  - Right Leg: {RightLeg.ToString()}\r\n" +
+				$"  - Left Leg: {LeftLeg.ToString()}\r\n";
 		}
 
 		public override void OppositeTransform(Point origin, OppositeType oppositeType)

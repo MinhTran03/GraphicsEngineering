@@ -59,9 +59,9 @@ namespace GraphicsEngineering.DataAccess.Models
 		public override string ToString()
 		{
 			Point worldKernel = Kernel.ToWorldCoordinates();
-			return $"Circle \n" +
-				$"\t      + Kernel: {worldKernel.ToString()} \n" +
-				$"\t      + Radius: {(Radius / 5).ToString()} \n";
+			return $"Circle \r\n" +
+				$"      + Kernel: {worldKernel.ToString()} \r\n" +
+				$"      + Radius: {(Radius / 5).ToString()} \r\n";
 		}
 
 		public override void TranslatingTransform(int trX, int trY)

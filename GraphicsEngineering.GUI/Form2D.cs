@@ -53,6 +53,7 @@ namespace GraphicsEngineering.GUI
 			isDraw = true;
 			//MessageBox.Show(pbDrawingArea.Size.ToString());
 		}
+
 		private void SetUpBasic()
 		{
 			Cons.WIDTH = pbDrawingArea.Width;
@@ -305,8 +306,9 @@ namespace GraphicsEngineering.GUI
 				//	ironMan.TranslatingTransform(0, -3);
 				//}
 
-				lblInfo.Text = human.ToString();
-				lblInfo.Text += mjolnir.ToString();
+				txtInfo.Text = human.ToString();
+				txtInfo.Text += mjolnir.ToString();
+				txtInfo.Text += ironMan.ToString();
 				mjolnir.Draw(e.Graphics, Dashes.Solid);
 				human.Draw(e.Graphics, Dashes.Solid);
 				ironMan.Draw(e.Graphics, Dashes.Solid);
@@ -331,7 +333,6 @@ namespace GraphicsEngineering.GUI
 			}
 			else if (count < 38 + Cons.DISTANCE_THOR_MJOLNIR - Cons.MJOLNIR_SIZE.Width / 2 - 4)
 			{
-				timer.Interval = 1;
 				actionMjolnir2Cap = true;
 			}
 			else if (count < 129 + 4)
@@ -344,7 +345,7 @@ namespace GraphicsEngineering.GUI
 			}
 			else if (count < 134 + 5)
 			{
-				timer.Interval = 100;
+				timer.Interval = 200;
 				actionLightnings[0] = true;
 			}
 			else if (count < 139 + 1)
@@ -369,16 +370,15 @@ namespace GraphicsEngineering.GUI
 			}
 			else if (count < 156 + 1)
 			{
-				timer.Interval = 500;
 				actionHumanHandDown = true;
 			}
 			else if (count < 157 + 2)
 			{
+				timer.Interval = 300;
 				actionKamehamehaCharge = true;
 			}
 			else if (count < 159 + 1)
 			{
-				timer.Interval = 500;
 				actionKamehamehaGo1 = true;
 			}
 			else if (count < 160 + 1)

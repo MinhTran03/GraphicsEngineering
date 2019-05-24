@@ -65,14 +65,14 @@ namespace GraphicsEngineering.DataAccess.Models
 			Point worldC = C.ToWorldCoordinates();
 			Point worldD = D.ToWorldCoordinates();
 
-			return $"Rectangle:\n" +
-					$"      + A: {worldA.ToString()} \n" +
-					$"      + B: {worldB.ToString()} \n" +
-					$"      + C: {worldC.ToString()} \n" +
-					$"      + D: {worldD.ToString()} \n" +
-					$"      + Width: {worldWidth.ToString()} \n" +
-					$"      + Height: {worldHeight.ToString()} \n" +
-					$"      + Kernel: {worldKernel.ToString()} \n";
+			return $"Rectangle:\r\n" +
+					$"      + A: {worldA.ToString()} \r\n" +
+					$"      + B: {worldB.ToString()} \r\n" +
+					$"      + C: {worldC.ToString()} \r\n" +
+					$"      + D: {worldD.ToString()} \r\n" +
+					$"      + Width: {worldWidth.ToString()} \r\n" +
+					$"      + Height: {worldHeight.ToString()} \r\n" +
+					$"      + Kernel: {worldKernel.ToString()} \r\n";
 		}
 
 		public override void TranslatingTransform(int trX, int trY)

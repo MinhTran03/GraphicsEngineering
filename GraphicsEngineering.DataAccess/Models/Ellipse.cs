@@ -79,10 +79,10 @@ namespace GraphicsEngineering.DataAccess.Models
 		public override string ToString()
 		{
 			Point worldKernel = Kernel.ToWorldCoordinates();
-			return $"Ellipse: \n" +
-				$"\t + Kernel: {worldKernel.ToString()} \n" +
-				$"\t + Radius A: {(RadiusA / 5).ToString()} \n" +
-				$"\t + Radius B: {(RadiusB / 5).ToString()} \n";
+			return $"Ellipse: \r\n" +
+				$"\t + Kernel: {worldKernel.ToString()} \r\n" +
+				$"\t + Radius A: {(RadiusA / 5).ToString()} \r\n" +
+				$"\t + Radius B: {(RadiusB / 5).ToString()} \r\n";
 		}
 
 		// Khi chạy hiệu ứng cần update lại Region, Kernel, [Radius]

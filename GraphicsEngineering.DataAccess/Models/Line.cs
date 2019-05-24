@@ -44,8 +44,10 @@ namespace GraphicsEngineering.DataAccess.Models
 
 			int dx = End.X - Begin.X;
 			int dy = End.Y - Begin.Y;
-			int dRun = Math.Abs(dx) >= Math.Abs(dy) ? Math.Abs(dx) : Math.Abs(dy);
-			int dFollow = Math.Abs(dx) < Math.Abs(dy) ? Math.Abs(dx) : Math.Abs(dy);
+			//int dRun = Math.Abs(dx) >= Math.Abs(dy) ? Math.Abs(dx) : Math.Abs(dy);
+			int dRun = Math.Max(Math.Abs(dx), Math.Abs(dy));
+			//int dFollow = Math.Abs(dx) < Math.Abs(dy) ? Math.Abs(dx) : Math.Abs(dy);
+			int dFollow = Math.Min(Math.Abs(dx), Math.Abs(dy));
 			int follow = 0;
 			int p = 2 * dFollow - dRun;
 			for (int run = 0; run <= dRun; run += 5)
@@ -77,10 +79,10 @@ namespace GraphicsEngineering.DataAccess.Models
 		{
 			Point worldBegin = Begin.ToWorldCoordinates();
 			Point worldEnd= End.ToWorldCoordinates();
-			return $"Line: \n" +
-				$"\t      + Begin: {worldBegin.ToString()} \n" +
-				$"\t      + End: {worldEnd.ToString()} \n" +
-				$"\t      + Length: {(Length / 5).ToString()} \n";
+			return $"Line: \r\n" +
+				$"      + Begin: {worldBegin.ToString()} \r\n" +
+				$"      + End: {worldEnd.ToString()} \r\n" +
+				$"      + Length: {(Length / 5).ToString()} \r\n";
 		}
 
 		// Khi chạy hiệu ứng cần update lại Begin, End, [Length]

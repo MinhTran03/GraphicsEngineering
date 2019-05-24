@@ -31,7 +31,7 @@ namespace GraphicsEngineering.DataAccess.Models
         public override string ToString()
         {
             return
-                $"> Mjolnir: \n" +
+                $"> Mjolnir: \r\n" +
                 $"   - {Body.ToString()}" +
                 $"   - {Helve.ToString()}";
         }
